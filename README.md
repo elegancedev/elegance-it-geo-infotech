@@ -125,19 +125,16 @@ elegance-it-geo-infotech/
 
 ## Contact
 
-📧 **Email:** contact@eleganceit.com  
-📞 **Phone:** +1 (555) 123-4567  
-📍 **Location:** 123 Tech Park, Innovation City
+📧 **Email:** elegancegeoinfotech06@gmail.com  
+📞 **Phone:** +91 63691 26125  
+📍 **Location:** Thippampatti, Dharmapuri, Tamilnadu, India
 
 ---
 
 ## Connect With Us
 
 <p align="center">
-<a href="#"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-<a href="#"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter"></a>
-<a href="#"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
-<a href="#"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
+<a href="https://www.instagram.com/elegancegeoinfotech/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
 </p>
 
 ---
