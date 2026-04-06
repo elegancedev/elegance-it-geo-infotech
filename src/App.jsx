@@ -289,7 +289,9 @@ const HeroSection = () => {
                       <div className="text-sm text-gray-400">Real projects, real impact</div>
                     </div>
                   </div>
+
                   {/* Floating Menu -- Recent Results */}
+
                   <div className="space-y-3">
                     {[
                       { icon: Globe, text: 'Web Develop: 40% more sales', result: '+40%' },
@@ -331,6 +333,8 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
+
+
               <motion.div
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
@@ -362,6 +366,8 @@ const HeroSection = () => {
     </section>
   );
 };
+
+// Our Services
 
 const ServicesSection = () => {
   const services = [
