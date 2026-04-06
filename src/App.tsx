@@ -542,111 +542,193 @@ const AboutSection = () => {
 };
 
 const PortfolioSection = () => {
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+
   const projects = [
     {
-      title: 'E-Commerce Platform',
+      title: 'LiDAR Scanning & Processing',
+      category: 'LiDAR Engineering',
+      description: 'High-precision 3D point cloud acquisition and processing for terrain modeling',
+      color: 'from-green-500 to-emerald-600',
+      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop',
+      features: ['Terrestrial LiDAR', 'Airborne LiDAR', 'Mobile Mapping', 'Point Cloud Processing'],
+      details: 'Our LiDAR engineering services deliver centimeter-level accuracy for infrastructure planning, topographic mapping, and asset management. We process millions of data points to create detailed 3D models for construction, mining, and environmental studies.',
+    },
+    {
+      title: 'BIM Modeling Services',
+      category: 'BIM & Scan-to-BIM',
+      description: 'As-built BIM models from laser scans for construction and renovation projects',
+      color: 'from-blue-500 to-indigo-600',
+      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop',
+      features: ['Architectural BIM', 'Structural BIM', 'MEP Modeling', 'Scan-to-BIM Conversion'],
+      details: 'Transform reality into digital information with our BIM services. From existing conditions documentation to full construction-ready models, we deliver LOD 350-500 models compatible with all major BIM platforms.',
+    },
+    {
+      title: 'SEO & Digital Marketing',
+      category: 'Digital Marketing',
+      description: 'Data-driven digital marketing strategies to boost your online presence and conversions',
+      color: 'from-orange-500 to-red-500',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+      features: ['Search Engine Optimization', 'Social Media Marketing', 'Content Strategy', 'PPC Campaigns'],
+      details: 'Grow your business with our comprehensive digital marketing services. We combine technical SEO, compelling content, and targeted advertising to drive organic traffic and maximize your ROI.',
+    },
+    {
+      title: 'UI/UX Design',
+      category: 'UI & UX Services',
+      description: 'User-centered design that creates intuitive and engaging digital experiences',
+      color: 'from-purple-500 to-pink-600',
+      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+      features: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems'],
+      details: 'Create digital products users love with our UI/UX design services. From wireframes to pixel-perfect interfaces, we ensure every interaction is intuitive, accessible, and visually stunning.',
+    },
+    {
+      title: 'Web Development',
       category: 'Web Development',
-      description: 'Full-stack e-commerce solution with AI-powered recommendations',
-      color: 'from-blue-500 to-cyan-500',
+      description: 'Modern, responsive websites built with cutting-edge technologies',
+      color: 'from-cyan-500 to-blue-600',
+      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=600&fit=crop',
+      features: ['React & Next.js', 'E-commerce', 'Progressive Web Apps', 'CMS Integration'],
+      details: 'Build powerful web applications that scale with your business. We create fast, SEO-friendly websites with beautiful interfaces and seamless user experiences.',
     },
     {
-      title: 'City Mapping Portal',
-      category: 'GIS Solutions',
-      description: 'Interactive mapping system for urban planning department',
-      color: 'from-emerald-500 to-teal-500',
-    },
-    {
-      title: 'Healthcare App',
+      title: 'Mobile App Development',
       category: 'Mobile Development',
-      description: 'HIPAA-compliant telemedicine application',
-      color: 'from-pink-500 to-rose-500',
-    },
-    {
-      title: 'Cloud Migration',
-      category: 'Cloud Services',
-      description: 'Enterprise-wide cloud infrastructure transformation',
-      color: 'from-purple-500 to-indigo-500',
-    },
-    {
-      title: 'Real Estate Portal',
-      category: 'Web Development',
-      description: 'Property listing platform with virtual tours',
-      color: 'from-orange-500 to-amber-500',
-    },
-    {
-      title: 'Logistics Dashboard',
-      category: 'Data Analytics',
-      description: 'Real-time fleet tracking and analytics system',
-      color: 'from-red-500 to-pink-500',
+      description: 'Native and cross-platform mobile applications for iOS and Android',
+      color: 'from-violet-500 to-purple-600',
+      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop',
+      features: ['iOS Development', 'Android Development', 'React Native', 'Flutter Apps'],
+      details: 'Bring your ideas to mobile with our app development services. We build feature-rich applications with intuitive interfaces that users will love.',
     },
   ];
 
   return (
-    <section id="portfolio" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-500/5 to-transparent" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary-400 font-medium text-sm uppercase tracking-wider">Our Work</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mt-4 mb-6">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Explore our portfolio of successful projects across various industries and technologies.
-          </p>
-        </motion.div>
+    <>
+      <section id="portfolio" className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-500/5 to-transparent" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="text-primary-400 font-medium text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+              <Briefcase size={18} /> Our Work
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mt-4 mb-6">
+              Featured <span className="gradient-text">Projects</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Explore our portfolio of successful projects across LiDAR, BIM, Digital Marketing, UI/UX, and more.
+            </p>
+          </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                onClick={() => setSelectedProject(project)}
+                className="group glass rounded-2xl overflow-hidden cursor-pointer"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-60`} />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Layers size={40} className="text-white/80" />
+                  </div>
+                </div>
+                <div className="p-6">
+                  <span className="text-xs text-primary-400 font-medium uppercase tracking-wider">
+                    {project.category}
+                  </span>
+                  <h3 className="text-xl font-semibold mt-2 mb-2">{project.title}</h3>
+                  <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+                  <div className="flex items-center gap-2 text-sm text-gray-300 group-hover:text-primary-400 transition-colors">
+                    View Details <ExternalLink size={14} />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          >
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="group glass rounded-2xl overflow-hidden cursor-pointer"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="glass rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             >
-              <div className={`h-48 bg-gradient-to-br ${project.color} opacity-80 group-hover:opacity-100 transition-opacity`}>
-                <div className="w-full h-full flex items-center justify-center">
-                  <Layers size={48} className="text-white/50 group-hover:scale-110 transition-transform" />
+              <div className="relative h-64 sm:h-80">
+                <img 
+                  src={selectedProject.image} 
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-br ${selectedProject.color} opacity-70`} />
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center hover:bg-black/70 transition-colors"
+                >
+                  <X size={20} className="text-white" />
+                </button>
+                <div className="absolute bottom-6 left-6">
+                  <span className="px-3 py-1 bg-white/20 rounded-full text-sm text-white">
+                    {selectedProject.category}
+                  </span>
                 </div>
               </div>
-              <div className="p-6">
-                <span className="text-xs text-primary-400 font-medium uppercase tracking-wider">
-                  {project.category}
-                </span>
-                <h3 className="text-xl font-semibold mt-2 mb-2">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4">{project.description}</p>
-                <div className="flex items-center gap-2 text-sm text-gray-300 group-hover:text-primary-400 transition-colors">
-                  View Project <ExternalLink size={14} />
+              
+              <div className="p-8">
+                <h2 className="text-3xl font-bold mb-4">{selectedProject.title}</h2>
+                <p className="text-gray-300 mb-6">{selectedProject.details}</p>
+                
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <CheckCircle size={20} className="text-primary-400" />
+                  Key Features
+                </h3>
+                <div className="grid grid-cols-2 gap-3 mb-8">
+                  {selectedProject.features.map((feature, i) => (
+                    <div key={i} className="flex items-center gap-2 text-gray-300">
+                      <div className="w-2 h-2 rounded-full bg-primary-400" />
+                      {feature}
+                    </div>
+                  ))}
                 </div>
+                
+                <a
+                  href="#contact"
+                  onClick={() => setSelectedProject(null)}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full text-white font-semibold hover:opacity-90 transition-opacity"
+                >
+                  Start Your Project <ArrowRight size={18} />
+                </a>
               </div>
             </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 glass rounded-full text-white font-semibold inline-flex items-center gap-2 hover:border-primary-500/50 transition-all"
-          >
-            View All Projects <ArrowRight size={18} />
-          </motion.button>
-        </motion.div>
-      </div>
-    </section>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
