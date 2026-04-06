@@ -7,7 +7,8 @@ import {
   Palette, Heart, Clock, Target, Rocket, Sparkles, Cpu, Lock, Server,
   Monitor, Terminal, Bug, FileCode, GitBranch, Box, Wifi, HardDrive,
   Printer, Headphones, MessageSquare, Send, Instagram, ArrowUp, Building,
-  MessageCircle, Plus, Minus, HelpCircle
+  MessageCircle, Plus, Minus, HelpCircle, Linkedin, Twitter, Quote,
+  GraduationCap, Award as Award2, BadgeCheck, ShieldCheck, Droplet, Hexagon
 } from 'lucide-react';
 
 const Logo = () => (
@@ -112,15 +113,51 @@ const Navbar = () => {
 };
 
 const HeroSection = () => {
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 4 + 2,
+    duration: Math.random() * 3 + 2,
+    delay: Math.random() * 2,
+  }));
+
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden pt-20">
-      <div className="absolute inset-0 bg-grid" />
+      <div className="absolute inset-0 bg-grid opacity-30" />
       
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full blur-[120px] animate-pulse-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-500/20 rounded-full blur-[120px] animate-pulse-slow" />
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary-500/30 to-transparent rounded-full blur-[150px] animate-pulse-slow" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-accent-500/30 to-transparent rounded-full blur-[150px] animate-pulse-slow" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-full blur-[180px]" />
+        
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute rounded-full bg-primary-400"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: particle.size,
+              height: particle.size,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              delay: particle.delay,
+            }}
+          />
+        ))}
+      </div>
       
-      <div className="absolute top-20 right-20 w-32 h-32 border border-primary-500/30 rounded-full animate-spin-slow" />
-      <div className="absolute bottom-40 left-20 w-20 h-20 border border-accent-500/30 rounded-lg animate-spin-slow" />
+      <div className="absolute top-20 right-20 w-32 h-32 border border-primary-500/30 rounded-full animate-spin-slow hidden lg:block" />
+      <div className="absolute bottom-40 left-20 w-20 h-20 border border-accent-500/30 rounded-lg animate-spin-slow hidden lg:block" />
+      <div className="absolute top-40 left-1/3 w-4 h-4 bg-primary-500/50 rounded-full animate-pulse hidden lg:block" />
+      <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-accent-500/50 rounded-full animate-pulse hidden lg:block" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -1034,14 +1071,337 @@ const FAQSection = () => {
   );
 };
 
+const AnimatedStatsSection = () => {
+  const stats = [
+    { value: 8, suffix: '+', label: 'Years Experience', icon: Award },
+    { value: 1500, suffix: '+', label: 'Projects Completed', icon: Briefcase },
+    { value: 900, suffix: '+', label: 'Happy Clients', icon: Users },
+    { value: 30, prefix: '$', suffix: 'M+', label: 'Revenue Generated', icon: TrendingUp },
+  ];
+
+  return (
+    <section className="py-20 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-accent-500/10 to-primary-500/10" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="glass rounded-2xl p-6 text-center"
+            >
+              <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center">
+                <stat.icon size={28} className="text-primary-400" />
+              </div>
+              <CountUp value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+              <p className="text-gray-400 text-sm mt-2">{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CountUp = ({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 2000;
+    const increment = value / (duration / 16);
+    
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [value]);
+
+  return (
+    <div className="text-3xl sm:text-4xl font-bold gradient-text">
+      {prefix}{count.toLocaleString()}{suffix}
+    </div>
+  );
+};
+
+const ClientLogosSection = () => {
+  const clients = [
+    { name: 'TechCorp', logo: 'TC' },
+    { name: 'GeoSystems', logo: 'GS' },
+    { name: 'BuildRight', logo: 'BR' },
+    { name: 'DataPro', logo: 'DP' },
+    { name: 'CloudBase', logo: 'CB' },
+    { name: 'MapMaster', logo: 'MM' },
+  ];
+
+  return (
+    <section className="py-16 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <span className="text-primary-400 font-medium text-sm uppercase tracking-wider">Trusted By</span>
+          <h3 className="text-xl font-semibold mt-2 text-gray-400">Our Trusted Partners & Clients</h3>
+        </motion.div>
+
+        <div className="flex flex-wrap justify-center items-center gap-8">
+          {clients.map((client, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="glass rounded-xl px-8 py-4 flex items-center gap-3 hover:border-primary-500/50 transition-colors"
+            >
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center font-bold text-sm">
+                {client.logo}
+              </div>
+              <span className="font-medium text-gray-300">{client.name}</span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const TeamSection = () => {
+  const team = [
+    {
+      name: 'Arun Kumar',
+      role: 'Founder & CEO',
+      expertise: 'GIS & LiDAR Engineering',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+    },
+    {
+      name: 'Priya Sharma',
+      role: 'Technical Lead',
+      expertise: 'Web & Mobile Development',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face',
+    },
+    {
+      name: 'Rahul Verma',
+      role: 'BIM Specialist',
+      expertise: 'Scan-to-BIM & CAD',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
+    },
+    {
+      name: 'Sneha Reddy',
+      role: 'Design Head',
+      expertise: 'UI/UX & Digital Marketing',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&crop=face',
+    },
+  ];
+
+  return (
+    <section id="team" className="py-24 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-500/5 to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-primary-400 font-medium text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+            <Users size={18} /> Our Team
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mt-4 mb-6">
+            Meet the <span className="gradient-text">Experts</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Our talented team of professionals brings together expertise in GIS, LiDAR, BIM, and modern web technologies.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {team.map((member, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="glass rounded-2xl overflow-hidden group"
+            >
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src={member.image} 
+                  alt={member.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <a href="#" className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-primary-500 transition-colors">
+                      <Linkedin size={14} />
+                    </a>
+                    <a href="#" className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-primary-500 transition-colors">
+                      <Twitter size={14} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-primary-400 text-sm">{member.role}</p>
+                <p className="text-gray-400 text-xs mt-2 flex items-center gap-1">
+                  <Droplet size={12} /> {member.expertise}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const TestimonialsSection = () => {
+  const testimonials = [
+    {
+      name: 'Vikram Singh',
+      role: 'Project Manager',
+      company: 'BuildCorp India',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+      text: 'Elegance IT delivered our BIM project with exceptional accuracy. Their LiDAR scanning and modeling expertise saved us weeks of manual work.',
+      rating: 5,
+    },
+    {
+      name: 'Meera Krishnan',
+      role: 'Director',
+      company: 'GeoVision Labs',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face',
+      text: 'Their GIS solutions transformed how we visualize and analyze spatial data. Professional, responsive, and technically excellent.',
+      rating: 5,
+    },
+    {
+      name: 'Anand Patel',
+      role: 'CEO',
+      company: 'TechStart Solutions',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face',
+      text: 'The web application they built for us exceeded expectations. Modern design, fast performance, and excellent post-launch support.',
+      rating: 5,
+    },
+  ];
+
+  return (
+    <section className="py-24 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-500/5 to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-primary-400 font-medium text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+            <Quote size={18} /> Testimonials
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mt-4 mb-6">
+            What Our <span className="gradient-text">Clients Say</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="glass rounded-2xl p-6 relative"
+            >
+              <Quote size={32} className="text-primary-500/30 absolute top-4 right-4" />
+              <div className="flex items-center gap-4 mb-4">
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.name}
+                  className="w-14 h-14 rounded-full object-cover border-2 border-primary-500"
+                />
+                <div>
+                  <h4 className="font-semibold">{testimonial.name}</h4>
+                  <p className="text-sm text-gray-400">{testimonial.role}</p>
+                  <p className="text-xs text-primary-400">{testimonial.company}</p>
+                </div>
+              </div>
+              <div className="flex gap-1 mb-4">
+                {[...Array(testimonial.rating)].map((_, j) => (
+                  <Star key={j} size={14} className="text-yellow-400 fill-yellow-400" />
+                ))}
+              </div>
+              <p className="text-gray-300 text-sm italic">"{testimonial.text}"</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CertificationsSection = () => {
+  const certs = [
+    { name: 'ISO 9001:2015', icon: BadgeCheck, desc: 'Quality Management' },
+    { name: 'Google Partner', icon: Hexagon, desc: 'Digital Marketing' },
+    { name: 'AWS Certified', icon: Cloud, desc: 'Cloud Services' },
+    { name: 'GIS Professional', icon: MapPinned, desc: 'GIS Solutions' },
+  ];
+
+  return (
+    <section className="py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap justify-center items-center gap-6">
+          {certs.map((cert, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex items-center gap-3 glass rounded-full px-6 py-3"
+            >
+              <cert.icon size={20} className="text-primary-400" />
+              <div>
+                <span className="font-medium text-sm">{cert.name}</span>
+                <span className="text-gray-400 text-xs block">{cert.desc}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function App() {
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
       <Navbar />
       <HeroSection />
+      <AnimatedStatsSection />
       <ServicesSection />
       <FAQSection />
+      <ClientLogosSection />
       <AboutSection />
+      <TeamSection />
+      <TestimonialsSection />
+      <CertificationsSection />
       <PortfolioSection />
       <ContactSection />
       <Footer />
