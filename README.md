@@ -34,12 +34,14 @@ Elegance IT & Geo Infotech is a premier technology solutions provider, combining
 
 | Service | Description |
 |---------|-------------|
-| 🌐 **Web Development** | Custom web applications with modern frameworks |
-| 📱 **Mobile Development** | Native and cross-platform mobile apps |
-| 🗺️ **GIS Solutions** | Geographic Information Systems & mapping |
-| 💾 **Data Engineering** | Database architecture & analytics |
-| ☁️ **Cloud Services** | AWS, Azure & DevOps solutions |
-| 🔒 **Cybersecurity** | Security audits & compliance |
+| 🌐 **Web Development** | Custom websites, e-commerce, PWA |
+| 📱 **Mobile App Development** | iOS, Android, React Native, Flutter |
+| 🗺️ **GIS & Mapping** | Interactive maps, spatial analysis |
+| 🎨 **Graphic Design** | Logo, brand identity, social media |
+| 💾 **Data Management** | Database design, analytics, reporting |
+| ☁️ **Cloud Solutions** | AWS, Azure, DevOps, server management |
+| 💻 **Software Development** | Custom software, APIs, integrations |
+| 🔒 **Cybersecurity** | Security audits, penetration testing |
 
 ---
 

@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Menu, X, Globe, MapPinned, Code, Smartphone, Database, Cloud, Shield,
-  ChevronRight, Star, Users, Award, TrendingUp, Mail, Phone,
-  ArrowRight, CheckCircle, Play, ExternalLink, Zap, Layers, Briefcase, BarChart3
+  Menu, X, Globe, MapPinned, Code2, Smartphone, Database, Cloud, Shield,
+  ChevronRight, Star, Users, Award, TrendingUp, Mail, Phone, MapPin,
+  ArrowRight, CheckCircle, Play, ExternalLink, Zap, Layers, Briefcase, BarChart3,
+  Palette, Heart, Clock, Target, Rocket, Sparkles, Cpu, Lock, Server,
+  Monitor, Terminal, Bug, FileCode, GitBranch, Box, Wifi, HardDrive,
+  Printer, Headphones, MessageSquare, Send, Instagram, ArrowUp, Building
 } from 'lucide-react';
 
 const Logo = () => (
@@ -27,7 +30,13 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Home', 'Services', 'About', 'Portfolio', 'Contact'];
+  const navLinks = [
+    { name: 'Home', icon: Rocket },
+    { name: 'Services', icon: Layers },
+    { name: 'About', icon: Users },
+    { name: 'Portfolio', icon: Briefcase },
+    { name: 'Contact', icon: MessageSquare },
+  ];
 
   return (
     <motion.nav
@@ -44,9 +53,9 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+                key={link.name}
+                href={`#${link.name.toLowerCase()}`}
+                className="text-gray-300 hover:text-white transition-colors text-sm font-medium flex items-center gap-1"
               >
                 {link}
               </a>
@@ -175,16 +184,20 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="flex items-center gap-8 mt-12"
+              className="flex flex-wrap items-center gap-6 mt-12"
             >
               {[
-                { value: '8+', label: 'Years Experience' },
-                { value: '1500+', label: 'Projects Done' },
-                { value: '900+', label: 'Happy Clients' },
+                { value: '8+', label: 'Years', icon: Award },
+                { value: '1500+', label: 'Projects', icon: Briefcase },
+                { value: '900+', label: 'Clients', icon: Users },
+                { value: '$30M+', label: 'Revenue', icon: TrendingUp },
               ].map((stat, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-2xl font-bold gradient-text">{stat.value}</div>
-                  <div className="text-xs text-gray-500">{stat.label}</div>
+                <div key={i} className="flex items-center gap-2 glass px-4 py-2 rounded-full">
+                  <stat.icon size={18} className="text-primary-400" />
+                  <div>
+                    <div className="text-lg font-bold gradient-text">{stat.value}</div>
+                    <div className="text-xs text-gray-500">{stat.label}</div>
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -207,15 +220,20 @@ const HeroSection = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                      <Code size={24} />
+                      <Code2 size={24} />
                     </div>
                     <div>
-                      <div className="font-semibold">Web Development</div>
-                      <div className="text-sm text-gray-400">Modern & Responsive</div>
+                      <div className="font-semibold">IT & GIS Solutions</div>
+                      <div className="text-sm text-gray-400">Complete Digital Services</div>
                     </div>
                   </div>
                   <div className="space-y-3">
-                    {[1, 2, 3].map((i) => (
+                    {[
+                      { icon: Globe, text: 'Web Development' },
+                      { icon: Smartphone, text: 'Mobile Apps' },
+                      { icon: MapPinned, text: 'GIS Mapping' },
+                      { icon: Cloud, text: 'Cloud Solutions' },
+                    ].map((item, i) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, x: -20 }}
@@ -223,8 +241,8 @@ const HeroSection = () => {
                         transition={{ delay: 0.5 + i * 0.1 }}
                         className="flex items-center gap-3 p-3 rounded-lg bg-white/5"
                       >
-                        <CheckCircle size={16} className="text-primary-400" />
-                        <span className="text-sm text-gray-300">Feature {i}</span>
+                        <item.icon size={16} className="text-primary-400" />
+                        <span className="text-sm text-gray-300">{item.text}</span>
                       </motion.div>
                     ))}
                   </div>
@@ -241,9 +259,20 @@ const HeroSection = () => {
                     <TrendingUp size={20} />
                   </div>
                   <div>
-                    <div className="text-sm font-semibold">Revenue Growth</div>
-                    <div className="text-xs text-green-400">+127%</div>
+                    <div className="text-sm font-semibold">Client Success</div>
+                    <div className="text-xs text-green-400">+127% Growth</div>
                   </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 15, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute top-10 right-10 glass rounded-xl p-3"
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles size={16} className="text-yellow-400" />
+                  <span className="text-xs font-medium">24/7 Support</span>
                 </div>
               </motion.div>
             </div>
@@ -273,38 +302,58 @@ const ServicesSection = () => {
     {
       icon: Globe,
       title: 'Web Development',
-      description: 'Custom web applications built with modern frameworks for optimal performance and user experience.',
-      features: ['React & Next.js', 'E-commerce Solutions', 'Progressive Web Apps'],
+      description: 'Build modern, responsive websites and web applications that drive engagement and conversions.',
+      features: ['Custom Websites', 'E-commerce Solutions', 'Progressive Web Apps', 'WordPress & CMS'],
+      color: 'from-blue-500 to-cyan-500',
     },
     {
       icon: Smartphone,
-      title: 'Mobile Development',
-      description: 'Native and cross-platform mobile applications that deliver seamless experiences across devices.',
-      features: ['iOS & Android', 'React Native', 'Flutter Apps'],
+      title: 'Mobile App Development',
+      description: 'Create powerful mobile applications for iOS and Android that users love.',
+      features: ['iOS Development', 'Android Development', 'React Native', 'Flutter Apps'],
+      color: 'from-purple-500 to-pink-500',
     },
     {
       icon: MapPinned,
-      title: 'GIS Solutions',
-      description: 'Geographic Information Systems integration for location-based analytics and mapping services.',
-      features: ['Mapping Services', 'Spatial Analysis', 'GeoData Integration'],
+      title: 'GIS & Mapping',
+      description: 'Leverage geographic data with advanced mapping and spatial analysis solutions.',
+      features: ['Interactive Maps', 'Spatial Analysis', 'GeoData Integration', 'Location Services'],
+      color: 'from-emerald-500 to-teal-500',
+    },
+    {
+      icon: Palette,
+      title: 'Graphic Design',
+      description: 'Stunning visual designs that capture your brand essence and captivate your audience.',
+      features: ['Logo Design', 'Brand Identity', 'Social Media Graphics', 'Print Design'],
+      color: 'from-orange-500 to-amber-500',
     },
     {
       icon: Database,
-      title: 'Data Engineering',
-      description: 'Robust database architecture and data pipeline solutions for scalable business intelligence.',
-      features: ['Cloud Databases', 'Data Migration', 'Analytics Setup'],
+      title: 'Data Management',
+      description: 'Organize, secure, and optimize your data for actionable insights and growth.',
+      features: ['Database Design', 'Data Migration', 'Cloud Storage', 'Analytics & Reporting'],
+      color: 'from-indigo-500 to-violet-500',
     },
     {
       icon: Cloud,
-      title: 'Cloud Services',
-      description: 'Cloud infrastructure management and migration services for enterprise scalability.',
-      features: ['AWS & Azure', 'DevOps', 'Serverless Architecture'],
+      title: 'Cloud Solutions',
+      description: 'Scale your infrastructure with reliable and cost-effective cloud services.',
+      features: ['AWS & Azure', 'Cloud Migration', 'DevOps & CI/CD', 'Server Management'],
+      color: 'from-sky-500 to-blue-500',
+    },
+    {
+      icon: Code2,
+      title: 'Software Development',
+      description: 'Custom software solutions built to solve your unique business challenges.',
+      features: ['Custom Software', 'API Development', 'Third-party Integrations', 'Legacy Modernization'],
+      color: 'from-rose-500 to-red-500',
     },
     {
       icon: Shield,
       title: 'Cybersecurity',
-      description: 'Comprehensive security solutions to protect your digital assets and ensure compliance.',
-      features: ['Security Audits', 'Penetration Testing', 'Compliance'],
+      description: 'Protect your digital assets with comprehensive security solutions.',
+      features: ['Security Audits', 'Penetration Testing', 'Compliance', '24/7 Monitoring'],
+      color: 'from-green-500 to-emerald-500',
     },
   ];
 
@@ -324,11 +373,11 @@ const ServicesSection = () => {
             Our <span className="gradient-text">Services</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Comprehensive IT and Geo Infotech solutions tailored to accelerate your digital transformation journey.
+            Comprehensive IT & Geo Infotech solutions - From web development to GIS mapping, we deliver excellence in every project.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, i) => (
             <motion.div
               key={i}
@@ -339,15 +388,15 @@ const ServicesSection = () => {
               whileHover={{ y: -5 }}
               className="glass rounded-2xl p-6 group hover:border-primary-500/50 transition-all duration-300"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <service.icon size={28} className="text-primary-400" />
+              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color || 'from-primary-500/20 to-accent-500/20'} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                <service.icon size={28} className="text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
               <p className="text-gray-400 text-sm mb-4">{service.description}</p>
               <div className="space-y-2">
                 {service.features.map((feature, j) => (
                   <div key={j} className="flex items-center gap-2 text-sm text-gray-300">
-                    <CheckCircle size={14} className="text-accent-400" />
+                    <CheckCircle size={14} className="text-primary-400" />
                     {feature}
                   </div>
                 ))}
@@ -714,7 +763,7 @@ const ContactSection = () => {
                   whileTap={{ scale: 0.98 }}
                   className="w-full py-4 bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl text-white font-semibold flex items-center justify-center gap-2"
                 >
-                  Send Message <ArrowRight size={18} />
+                  <Send size={18} /> Send Message
                 </motion.button>
               </div>
             </form>
@@ -733,7 +782,7 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { name: 'Instagram', link: 'https://www.instagram.com/elegancegeoinfotech/' },
+    { name: 'Instagram', link: 'https://www.instagram.com/elegancegeoinfotech/', icon: Instagram },
   ];
 
   return (
@@ -752,9 +801,9 @@ const Footer = () => {
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full glass flex items-center justify-center text-sm font-bold hover:bg-primary-500/20 transition-colors"
+                  className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-primary-500/20 transition-colors"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                  <social.icon size={20} />
                 </a>
               ))}
             </div>
@@ -762,12 +811,17 @@ const Footer = () => {
 
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="font-semibold mb-4">{title}</h4>
+              <h4 className="font-semibold mb-4 flex items-center gap-2">
+                {title === 'Services' && <Layers size={18} className="text-primary-400" />}
+                {title === 'Company' && <Building size={18} className="text-primary-400" />}
+                {title === 'Legal' && <Lock size={18} className="text-primary-400" />}
+                {title}
+              </h4>
               <ul className="space-y-3">
                 {links.map((link, i) => (
                   <li key={i}>
-                    <a href="#" className="text-gray-400 text-sm hover:text-primary-400 transition-colors">
-                      {link}
+                    <a href="#" className="text-gray-400 text-sm hover:text-primary-400 transition-colors flex items-center gap-2">
+                      <ChevronRight size={14} /> {link}
                     </a>
                   </li>
                 ))}
