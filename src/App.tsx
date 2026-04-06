@@ -6,7 +6,8 @@ import {
   ArrowRight, CheckCircle, Play, ExternalLink, Zap, Layers, Briefcase, BarChart3,
   Palette, Heart, Clock, Target, Rocket, Sparkles, Cpu, Lock, Server,
   Monitor, Terminal, Bug, FileCode, GitBranch, Box, Wifi, HardDrive,
-  Printer, Headphones, MessageSquare, Send, Instagram, ArrowUp, Building
+  Printer, Headphones, MessageSquare, Send, Instagram, ArrowUp, Building,
+  MessageCircle, Plus, Minus, HelpCircle
 } from 'lucide-react';
 
 const Logo = () => (
@@ -845,16 +846,124 @@ const Footer = () => {
   );
 };
 
+const WhatsAppButton = () => {
+  return (
+    <motion.a
+      href="https://wa.me/916369126125"
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      whileHover={{ scale: 1.1 }}
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-green-500/30 transition-all"
+    >
+      <MessageCircle size={28} className="text-white" />
+      <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse" />
+    </motion.a>
+  );
+};
+
+const FAQSection = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  
+  const faqs = [
+    {
+      question: 'What services does Elegance IT & Geo Infotech offer?',
+      answer: 'We offer a comprehensive range of IT services including Web Development, Mobile App Development, GIS & Mapping Solutions, Graphic Design, Data Management, Cloud Solutions, Software Development, and Cybersecurity services.',
+    },
+    {
+      question: 'How long does it take to complete a project?',
+      answer: 'Project timelines vary based on complexity. A simple website can take 2-4 weeks, while complex applications may take 2-6 months. We provide detailed timelines during our initial consultation.',
+    },
+    {
+      question: 'Do you provide post-launch support?',
+      answer: 'Yes! We offer comprehensive post-launch support including bug fixes, updates, security patches, and optional maintenance packages to keep your project running smoothly.',
+    },
+    {
+      question: 'What technologies do you work with?',
+      answer: 'We work with modern technologies including React, Next.js, React Native, Flutter, Python, Node.js, AWS, Azure, and various GIS platforms like QGIS and ArcGIS.',
+    },
+    {
+      question: 'Can you help with existing projects?',
+      answer: 'Absolutely! We can take over existing projects, perform code audits, optimize performance, add new features, or help with migration to modern technologies.',
+    },
+    {
+      question: 'How much does a typical project cost?',
+      answer: 'Project costs depend on scope, complexity, and requirements. We provide detailed quotes after understanding your needs. Contact us for a free consultation and estimate.',
+    },
+  ];
+
+  return (
+    <section id="faq" className="py-24 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-500/5 to-transparent" />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-primary-400 font-medium text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+            <HelpCircle size={18} /> FAQ
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold mt-4 mb-6">
+            Frequently Asked <span className="gradient-text">Questions</span>
+          </h2>
+        </motion.div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="glass rounded-2xl overflow-hidden"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full px-6 py-4 flex items-center justify-between text-left"
+              >
+                <span className="font-medium pr-4">{faq.question}</span>
+                <motion.div
+                  animate={{ rotate: openIndex === i ? 45 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Plus size={20} className="text-primary-400 flex-shrink-0" />
+                </motion.div>
+              </button>
+              <motion.div
+                initial={false}
+                animate={{
+                  height: openIndex === i ? 'auto' : 0,
+                  opacity: openIndex === i ? 1 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <p className="px-6 pb-4 text-gray-400 text-sm">{faq.answer}</p>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function App() {
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
       <Navbar />
       <HeroSection />
       <ServicesSection />
+      <FAQSection />
       <AboutSection />
       <PortfolioSection />
       <ContactSection />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
