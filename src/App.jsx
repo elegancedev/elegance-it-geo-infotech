@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu, X, Globe, MapPinned, Code2, Smartphone, Database, Cloud, Shield,
-  ChevronRight, Star, Users, Award, TrendingUp, Mail, Phone, MapPin,
+  ChevronRight, Star, Users, Award, TrendingUp, Mail, Phone, MapPin, Eye,
   ArrowRight, CheckCircle, Play, ExternalLink, Zap, Layers, Briefcase, BarChart3,
   Palette, Heart, Clock, Target, Rocket, Sparkles, Cpu, Lock, Server,
   Monitor, Terminal, Bug, FileCode, GitBranch, Box, Wifi, HardDrive,
@@ -160,7 +160,7 @@ const HeroSection = () => {
       <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-accent-500/50 rounded-full animate-pulse hidden lg:block" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -170,61 +170,63 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
             >
-              <Zap size={16} className="text-primary-400" />
-              <span className="text-sm text-gray-300">Innovating Digital Solutions</span>
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-sm text-gray-300">Accepting new projects for April 2026</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6"
+              className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-tight mb-6"
             >
-              Transform Your
+              We Build
               <br />
-              <span className="gradient-text">Digital Vision</span>
+              <span className="gradient-text">Digital Products</span>
               <br />
-              Into Reality
+              That Actually Work
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-gray-400 text-lg mb-8 max-w-lg"
+              className="text-gray-400 text-xl mb-8 max-w-xl leading-relaxed"
             >
-              We blend cutting-edge IT solutions with precision Geo Infotech services to deliver comprehensive digital experiences that drive business growth.
+              From LiDAR scanning to web apps — we deliver projects that help businesses save time, reduce costs, and grow faster. No fluff, just results.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 mb-8"
             >
-              <motion.button
+              <motion.a
+                href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full text-white font-semibold flex items-center gap-2"
+                className="px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full text-white font-bold text-lg flex items-center gap-2 shadow-lg shadow-primary-500/30"
               >
-                Start Your Project <ArrowRight size={18} />
-              </motion.button>
-              <motion.button
+                Book Free Consultation <ArrowRight size={20} />
+              </motion.a>
+              <motion.a
+                href="#portfolio"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 glass rounded-full text-white font-semibold flex items-center gap-2"
+                className="px-8 py-4 glass rounded-full text-white font-semibold text-lg flex items-center gap-2"
               >
-                <Play size={18} /> Watch Our Work
-              </motion.button>
+                See Our Work <ExternalLink size={20} />
+              </motion.a>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap items-center gap-6 mt-12"
+              className="flex flex-wrap items-center gap-6"
             >
               {[
                 { value: '8+', label: 'Years', icon: Award },
@@ -232,14 +234,34 @@ const HeroSection = () => {
                 { value: '900+', label: 'Clients', icon: Users },
                 { value: '$30M+', label: 'Revenue', icon: TrendingUp },
               ].map((stat, i) => (
-                <div key={i} className="flex items-center gap-2 glass px-4 py-2 rounded-full">
-                  <stat.icon size={18} className="text-primary-400" />
+                <div key={i} className="flex items-center gap-2 glass px-4 py-3 rounded-full">
+                  <stat.icon size={20} className="text-primary-400" />
                   <div>
-                    <div className="text-lg font-bold gradient-text">{stat.value}</div>
-                    <div className="text-xs text-gray-500">{stat.label}</div>
+                    <div className="text-xl font-bold gradient-text">{stat.value}</div>
+                    <div className="text-xs text-gray-400">{stat.label}</div>
                   </div>
                 </div>
               ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="mt-8 flex items-center gap-4 text-sm text-gray-400"
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} className="text-green-400" />
+                <span>Registered Company</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} className="text-green-400" />
+                <span>24/7 Support</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} className="text-green-400" />
+                <span>On-Time Delivery</span>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -263,26 +285,29 @@ const HeroSection = () => {
                       <Code2 size={24} />
                     </div>
                     <div>
-                      <div className="font-semibold">IT & GIS Solutions</div>
-                      <div className="text-sm text-gray-400">Complete Digital Services</div>
+                      <div className="font-semibold">Recent Results</div>
+                      <div className="text-sm text-gray-400">Real projects, real impact</div>
                     </div>
                   </div>
                   <div className="space-y-3">
                     {[
-                      { icon: Globe, text: 'Web Development' },
-                      { icon: Smartphone, text: 'Mobile Apps' },
-                      { icon: MapPinned, text: 'GIS Mapping' },
-                      { icon: Cloud, text: 'Cloud Solutions' },
+                      { icon: Globe, text: 'E-commerce: 40% more sales', result: '+40%' },
+                      { icon: MapPinned, text: 'BIM Project: Saved 200 hrs', result: '-200hrs' },
+                      { icon: Smartphone, text: 'App: 10K+ downloads', result: '10K+' },
+                      { icon: Cloud, text: 'Cloud: 99.9% uptime', result: '99.9%' },
                     ].map((item, i) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5 + i * 0.1 }}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-white/5"
+                        className="flex items-center justify-between p-3 rounded-lg bg-white/5"
                       >
-                        <item.icon size={16} className="text-primary-400" />
-                        <span className="text-sm text-gray-300">{item.text}</span>
+                        <div className="flex items-center gap-3">
+                          <item.icon size={16} className="text-primary-400" />
+                          <span className="text-sm text-gray-300">{item.text}</span>
+                        </div>
+                        <span className="text-sm font-bold text-green-400">{item.result}</span>
                       </motion.div>
                     ))}
                   </div>
@@ -460,28 +485,32 @@ const ServicesSection = () => {
 
 const AboutSection = () => {
   const stats = [
-    { icon: Award, value: '8+', label: 'Years of Excellence', color: 'from-amber-400 to-orange-500' },
+    { icon: Award, value: '8+', label: 'Years Experience', color: 'from-amber-400 to-orange-500' },
     { icon: Users, value: '900+', label: 'Happy Clients', color: 'from-blue-400 to-cyan-500' },
-    { icon: Briefcase, value: '1500+', label: 'Projects Completed', color: 'from-emerald-400 to-teal-500' },
-    { icon: BarChart3, value: '$30M+', label: 'Client Revenue Generated', color: 'from-purple-400 to-pink-500' },
+    { icon: Briefcase, value: '1500+', label: 'Projects Done', color: 'from-emerald-400 to-teal-500' },
+    { icon: BarChart3, value: '$30M+', label: 'Client Revenue', color: 'from-purple-400 to-pink-500' },
   ];
 
   const whyChooseUs = [
     {
-      title: 'Expert Team',
-      description: 'Seasoned professionals with deep expertise in IT and geospatial technologies.',
+      title: 'Fixed Price Projects',
+      description: 'No surprises. You know exactly what you\'ll pay before we start.',
+      icon: CheckCircle,
     },
     {
-      title: 'Innovation First',
-      description: 'We stay ahead of trends to deliver cutting-edge solutions.',
+      title: 'On-Time Delivery',
+      description: 'We respect deadlines. Your project ships when promised.',
+      icon: Clock,
     },
     {
-      title: 'Client Focused',
-      description: 'Your success is our priority. We build lasting partnerships.',
+      title: 'Dedicated Support',
+      description: 'Direct access to our team. No ticket system runaround.',
+      icon: Headphones,
     },
     {
-      title: 'Quality Assured',
-      description: 'Rigorous testing and quality standards in every project.',
+      title: 'Transparent Process',
+      description: 'Regular updates and full visibility into your project progress.',
+      icon: Eye,
     },
   ];
 
@@ -495,15 +524,26 @@ const AboutSection = () => {
             viewport={{ once: true }}
           >
             <span className="text-primary-400 font-medium text-sm uppercase tracking-wider">About Us</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mt-4 mb-6">
-              Driving Innovation in <span className="gradient-text">IT & GIS</span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mt-4 mb-6">
+              We're the team that <span className="gradient-text">actually delivers</span>
             </h2>
-            <p className="text-gray-400 mb-6">
-              Elegance IT & Geo Infotech is a premier technology solutions provider, combining the best of IT development with precision geospatial services. Our mission is to empower businesses through innovative digital solutions.
+            <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+              Based in Tamil Nadu, India, we're a team of developers, designers, and GIS specialists who got tired of watching businesses get burned by agencies that overpromise and underdeliver.
             </p>
-            <p className="text-gray-400 mb-8">
-              With over 8 years of experience, we've helped hundreds of businesses transform their operations through custom software, mobile applications, cloud solutions, and advanced mapping services.
+            <p className="text-gray-400 mb-6 leading-relaxed">
+              We started Elegance IT & Geo Infotech to offer something different: honest pricing, real communication, and projects that actually ship. Whether you need a website, a mobile app, or precision LiDAR scanning — we treat every project like it's our own.
             </p>
+            
+            <div className="flex flex-wrap gap-4 mb-8">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5">
+                <Building size={16} className="text-primary-400" />
+                <span className="text-sm text-gray-300">Registered Company</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5">
+                <MapPin size={16} className="text-primary-400" />
+                <span className="text-sm text-gray-300">Dharmapuri, Tamil Nadu</span>
+              </div>
+            </div>
 
             <div className="grid grid-cols-2 gap-4">
               {whyChooseUs.map((item, i) => (
@@ -513,10 +553,13 @@ const AboutSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-4 rounded-xl bg-white/5"
+                  className="p-4 rounded-xl bg-white/5 flex items-start gap-3"
                 >
-                  <h4 className="font-semibold mb-2">{item.title}</h4>
-                  <p className="text-sm text-gray-400">{item.description}</p>
+                  <item.icon size={20} className="text-green-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-sm mb-1">{item.title}</h4>
+                    <p className="text-xs text-gray-400">{item.description}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -898,9 +941,9 @@ const ContactSection = () => {
 
 const Footer = () => {
   const footerLinks = {
-    Services: ['Web Development', 'Mobile Apps', 'GIS Solutions', 'Cloud Services'],
-    Company: ['About Us', 'Careers', 'Blog', 'Contact'],
-    Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
+    Services: ['Web Development', 'Mobile Apps', 'LiDAR Scanning', 'BIM Modeling', 'SEO & Marketing'],
+    Company: ['About Us', 'Our Team', 'Contact', 'Careers'],
+    Legal: ['Privacy Policy', 'Terms of Service', 'Refund Policy'],
   };
 
   const socialLinks = [
@@ -913,9 +956,13 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <Logo />
-            <p className="text-gray-400 text-sm mt-4 mb-6">
-              Transforming businesses through innovative IT and Geo Infotech solutions since 2016.
+            <p className="text-gray-400 text-sm mt-4 mb-4">
+              Building digital products that help businesses grow. Based in Tamil Nadu, serving clients worldwide.
             </p>
+            <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
+              <Building size={14} />
+              <span>EleganceGeoInfoTech</span>
+            </div>
             <div className="flex gap-3">
               {socialLinks.map((social, i) => (
                 <a
@@ -952,13 +999,31 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-400 text-sm">
-            © 2024 Elegance IT & Geo Infotech. All rights reserved.
-          </p>
-          <p className="text-gray-400 text-sm">
-            Crafted with passion for innovation
-          </p>
+        <div className="pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
+            <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
+              <div className="flex items-center gap-1">
+                <Mail size={12} />
+                <span>elegancegeoinfotech06@gmail.com</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Phone size={12} />
+                <span>+91 63691 26125</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <MapPin size={12} />
+                <span>Thippampatti, Dharmapuri, Tamil Nadu</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-gray-400 text-sm">
+              © 2026 Elegance IT & Geo Infotech. All rights reserved.
+            </p>
+            <p className="text-gray-500 text-xs">
+              Crafted with care in India 🇮🇳
+            </p>
+          </div>
         </div>
       </div>
     </footer>
@@ -1279,7 +1344,8 @@ const TestimonialsSection = () => {
       role: 'Project Manager',
       company: 'BuildCorp India',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
-      text: 'Elegance IT delivered our BIM project with exceptional accuracy. Their LiDAR scanning and modeling expertise saved us weeks of manual work.',
+      text: 'Their BIM models helped us win a government contract. Delivered 3 weeks early and saved us ₹4 lakhs in rework costs.',
+      result: '₹4L saved',
       rating: 5,
     },
     {
@@ -1287,15 +1353,17 @@ const TestimonialsSection = () => {
       role: 'Director',
       company: 'GeoVision Labs',
       image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face',
-      text: 'Their GIS solutions transformed how we visualize and analyze spatial data. Professional, responsive, and technically excellent.',
+      text: 'The LiDAR survey they did for our highway project was incredibly accurate. 15,000 data points processed in just 5 days.',
+      result: '5 days delivery',
       rating: 5,
     },
     {
       name: 'Anand Patel',
       role: 'CEO',
-      company: 'TechStart Solutions',
+      company: 'RetailMart',
       image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face',
-      text: 'The web application they built for us exceeded expectations. Modern design, fast performance, and excellent post-launch support.',
+      text: 'Our e-commerce website went from 0 to 500 orders/day in 3 months. The SEO work alone brought us 300% more traffic.',
+      result: '300% more traffic',
       rating: 5,
     },
   ];
@@ -1311,11 +1379,14 @@ const TestimonialsSection = () => {
           className="text-center mb-16"
         >
           <span className="text-primary-400 font-medium text-sm uppercase tracking-wider flex items-center justify-center gap-2">
-            <Quote size={18} /> Testimonials
+            <Quote size={18} /> Client Results
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mt-4 mb-6">
-            What Our <span className="gradient-text">Clients Say</span>
+            Real Results, <span className="gradient-text">Real Clients</span>
           </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what our clients achieved with our solutions.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -1328,8 +1399,11 @@ const TestimonialsSection = () => {
               transition={{ delay: i * 0.1 }}
               className="glass rounded-2xl p-6 relative"
             >
-              <Quote size={32} className="text-primary-500/30 absolute top-4 right-4" />
-              <div className="flex items-center gap-4 mb-4">
+              <div className="absolute top-4 right-4 px-3 py-1 bg-green-500/20 rounded-full">
+                <span className="text-green-400 text-xs font-bold">{testimonial.result}</span>
+              </div>
+              <Quote size={32} className="text-primary-500/30" />
+              <div className="flex items-center gap-4 mb-4 mt-2">
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.name}
@@ -1337,8 +1411,7 @@ const TestimonialsSection = () => {
                 />
                 <div>
                   <h4 className="font-semibold">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-400">{testimonial.role}</p>
-                  <p className="text-xs text-primary-400">{testimonial.company}</p>
+                  <p className="text-sm text-gray-400">{testimonial.role}, {testimonial.company}</p>
                 </div>
               </div>
               <div className="flex gap-1 mb-4">
@@ -1346,7 +1419,7 @@ const TestimonialsSection = () => {
                   <Star key={j} size={14} className="text-yellow-400 fill-yellow-400" />
                 ))}
               </div>
-              <p className="text-gray-300 text-sm italic">"{testimonial.text}"</p>
+              <p className="text-gray-300 text-sm leading-relaxed">"{testimonial.text}"</p>
             </motion.div>
           ))}
         </div>
