@@ -289,9 +289,10 @@ const HeroSection = () => {
                       <div className="text-sm text-gray-400">Real projects, real impact</div>
                     </div>
                   </div>
+                  {/* Floating Menu -- Recent Results */}
                   <div className="space-y-3">
                     {[
-                      { icon: Globe, text: 'E-commerce: 40% more sales', result: '+40%' },
+                      { icon: Globe, text: 'Web Develop: 40% more sales', result: '+40%' },
                       { icon: MapPinned, text: 'BIM Project: Saved 200 hrs', result: '-200hrs' },
                       { icon: Smartphone, text: 'App: 10K+ downloads', result: '10K+' },
                       { icon: Cloud, text: 'Cloud: 99.9% uptime', result: '99.9%' },
