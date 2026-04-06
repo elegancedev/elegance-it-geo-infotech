@@ -55,9 +55,10 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={`#${link.name.toLowerCase()}`}
-                className="text-gray-300 hover:text-white transition-colors text-sm font-medium flex items-center gap-1"
+                className="text-gray-300 hover:text-white transition-colors text-sm font-medium flex items-center gap-2"
               >
-                {link}
+                <link.icon size={18} className="text-primary-400" />
+                {link.name}
               </a>
             ))}
             <motion.button
@@ -89,12 +90,13 @@ const Navbar = () => {
             <div className="p-6 space-y-4">
               {navLinks.map((link) => (
                 <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
+                  key={link.name}
+                  href={`#${link.name.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
-                  className="block text-gray-300 hover:text-white transition-colors py-2"
+                  className="block text-gray-300 hover:text-white transition-colors py-2 flex items-center gap-2"
                 >
-                  {link}
+                  <link.icon size={18} className="text-primary-400" />
+                  {link.name}
                 </a>
               ))}
               <button className="w-full px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full text-white font-semibold">
