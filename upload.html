@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elegance IT & Geo Infotech - Web Development, GIS Solutions & Mobile Apps</title>
+  <meta name="title" content="Elegance IT & Geo Infotech - Web Development, GIS Solutions & Mobile Apps">
+  <meta name="description" content="Premier technology solutions provider specializing in Web Development, Mobile Apps, GIS Mapping, Cloud Solutions, and Cybersecurity. Transform your digital vision into reality.">
+  <meta name="keywords" content="web development, mobile app development, GIS solutions, mapping, cloud services, IT company, Dharmapuri, Tamil Nadu, India">
+  <meta name="author" content="Elegance IT & Geo Infotech">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Elegance IT & Geo Infotech - Transform Your Digital Vision">
+  <meta property="og:description" content="Premier technology solutions provider specializing in Web Development, Mobile Apps, GIS Mapping, and Cloud Solutions.">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta name="email" content="elegancegeoinfotech06@gmail.com">
+  <meta name="phone" content="+91 6369126125">
+  <meta name="geo.region" content="IN-TN">
+  <meta name="geo.placename" content="Dharmapuri, Tamil Nadu">
+  <link rel="icon" type="image/png" href="Logo New.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;overflow-x:hidden}
+    .gradient-text{background:linear-gradient(135deg,#0ea5e9 0%,#8b5cf6 50%,#ec4899 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .glass{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1)}
+    .bg-grid{background-image:linear-gradient(rgba(14,165,233,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,.03) 1px,transparent 1px);background-size:50px 50px}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    .animate-float{animation:float 6s ease-in-out infinite}
+    .animate-pulse-slow{animation:pulse 4s ease-in-out infinite}
+    .animate-spin-slow{animation:spin 20s linear infinite}
+    .nav-fixed{position:fixed;top:0;left:0;right:0;z-index:50;transition:all .3s}
+    .nav-scrolled{background:rgba(10,10,15,.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.1)}
+    .btn-primary{background:linear-gradient(135deg,#0ea5e9,#8b5cf6);padding:.75rem 1.5rem;border-radius:9999px;color:#fff;font-weight:600;transition:all .3s}
+    .btn-primary:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(14,165,233,.3)}
+    .card{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1.5rem;transition:all .3s}
+    .card:hover{border-color:rgba(14,165,233,.5);transform:translateY(-5px)}
+    .section-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:3rem}
+    .scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%)}
+    .faq-item{border-radius:1rem;overflow:hidden;margin-bottom:1rem}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .3s,opacity .3s;opacity:0}
+    .faq-answer.open{max-height:500px;opacity:1}
+    .whatsapp-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;width:3.5rem;height:3.5rem;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(34,197,94,.4);transition:all .3s}
+    .whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(34,197,94,.5)}
+    .mobile-menu{display:none;position:fixed;top:5rem;left:1rem;right:1rem;z-index:40}
+    .mobile-menu.open{display:block}
+    @media(max-width:768px){.section-title{font-size:2rem}.desktop-only{display:none}.mobile-menu-trigger{display:block}}
+    .count-up{font-size:2rem;font-weight:700;background:linear-gradient(135deg,#0ea5e9,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.8);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:1rem}
+    .modal-content{max-width:56rem;width:100%;max-height:90vh;overflow-y:auto;border-radius:1.5rem}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const Icons = {
+      Menu: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>,
+      X: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>,
+      Globe: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>,
+      MapPinned: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>,
+      Code2: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>,
+      Smartphone: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>,
+      Database: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>,
+      Cloud: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>,
+      Shield: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>,
+      ChevronRight: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>,
+      Star: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+      Users: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+      Award: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>,
+      TrendingUp: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>,
+      Mail: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>,
+      Phone: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
+      MapPin: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>,
+      ExternalLink: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>,
+      ArrowRight: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>,
+      CheckCircle: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>,
+      Layers: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>,
+      Briefcase: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>,
+      BarChart3: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>,
+      Palette: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/></svg>,
+      Rocket: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>,
+      Building: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>,
+      MessageSquare: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>,
+      MessageCircle: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>,
+      Plus: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>,
+      HelpCircle: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>,
+      Send: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>,
+      Lock: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
+      Linkedin: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>,
+      Twitter: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>,
+      Quote: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>,
+      Droplet: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>,
+      BadgeCheck: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>,
+      Hexagon: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/></svg>,
+      Sparkles: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>,
+      Instagram: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>,
+      Headphones: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>,
+      Clock: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+      Eye: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>,
+    };
+
+    const Logo = () => (
+      <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
+        <img src="Logo New.png" alt="Elegance IT & Geo Infotech" style={{height:'48px',width:'auto'}}/>
+        <div style={{display:'none'}} className="desktop-only">
+          <span style={{fontSize:'18px',fontWeight:'700',background:'linear-gradient(135deg,#0ea5e9,#8b5cf6)','-webkit-background-clip':'text','-webkit-text-fill-color':'transparent'}}>Elegance IT &</span>
+          <br/>
+          <span style={{fontSize:'14px',color:'#9ca3af'}}>Geo Infotech</span>
+        </div>
+      </div>
+    );
+
+    const Navbar = () => {
+      const [isOpen, setIsOpen] = useState(false);
+      const [scrolled, setScrolled] = useState(false);
+
+      useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      const navLinks = [
+        { name: 'Home', href: '#home' },
+        { name: 'Services', href: '#services' },
+        { name: 'About', href: '#about' },
+        { name: 'Portfolio', href: '#portfolio' },
+        { name: 'Contact', href: '#contact' },
+      ];
+
+      return (
+        <nav className={`nav-fixed ${scrolled ? 'nav-scrolled' : ''}`} style={{padding: scrolled ? '12px 0' : '20px 0'}}>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+            <Logo/>
+            
+            <div style={{display:'flex',alignItems:'center',gap:'32px'}} className="desktop-only">
+              {navLinks.map((link) => (
+                <a key={link.name} href={link.href} style={{color:'#d1d5db',textDecoration:'none',fontSize:'14px',fontWeight:'500',transition:'color .3s'}} onMouseEnter={e=>e.target.style.color='#fff'} onMouseLeave={e=>e.target.style.color='#d1d5db'}>
+                  {link.name}
+                </a>
+              ))}
+              <a href="#contact" className="btn-primary" style={{textDecoration:'none',fontSize:'14px'}}>Get Started</a>
+            </div>
+
+            <button onClick={() => setIsOpen(!isOpen)} style={{background:'none',border:'none',color:'#fff',cursor:'pointer',padding:'8px'}} className="mobile-menu-trigger">
+              {isOpen ? <Icons.X/> : <Icons.Menu/>}
+            </button>
+          </div>
+
+          <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
+            <div className="glass" style={{padding:'24px',borderRadius:'16px'}}>
+              {navLinks.map((link) => (
+                <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} style={{display:'block',color:'#d1d5db',textDecoration:'none',padding:'8px 0',fontSize:'16px'}}>
+                  {link.name}
+                </a>
+              ))}
+              <a href="#contact" className="btn-primary" style={{display:'block',textAlign:'center',marginTop:'16px',textDecoration:'none'}}>Get Started</a>
+            </div>
+          </div>
+        </nav>
+      );
+    };
+
+    const CountUp = ({ value, prefix = '', suffix = '' }) => {
+      const [count, setCount] = useState(0);
+
+      useEffect(() => {
+        let start = 0;
+        const duration = 2000;
+        const increment = value / (duration / 16);
+        
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= value) {
+            setCount(value);
+            clearInterval(timer);
+          } else {
+            setCount(Math.floor(start));
+          }
+        }, 16);
+
+        return () => clearInterval(timer);
+      }, [value]);
+
+      return <div className="count-up">{prefix}{count.toLocaleString()}{suffix}</div>;
+    };
+
+    const HeroSection = () => {
+      const particles = Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 4 + 2,
+        duration: Math.random() * 3 + 2,
+        delay: Math.random() * 2,
+      }));
+
+      return (
+        <section id="home" style={{minHeight:'100vh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',paddingTop:'80px'}}>
+          <div className="bg-grid" style={{position:'absolute',inset:0}}/>
+          
+          <div style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}}>
+            <div style={{position:'absolute',top:'25%',left:'25%',width:'500px',height:'500px',background:'radial-gradient(circle, rgba(14,165,233,.3) 0%, transparent 70%)',borderRadius:'50%',filter:'blur(150px)',animation:'pulse 4s ease-in-out infinite'}}/>
+            <div style={{position:'absolute',bottom:'25%',right:'25%',width:'500px',height:'500px',background:'radial-gradient(circle, rgba(139,92,246,.3) 0%, transparent 70%)',borderRadius:'50%',filter:'blur(150px)',animation:'pulse 4s ease-in-out infinite',animationDelay:'2s'}}/>
+            
+            {particles.map((particle) => (
+              <div key={particle.id} style={{position:'absolute',left:`${particle.x}%`,top:`${particle.y}%`,width:particle.size,height:particle.size,background:'#38bdf8',borderRadius:'50%',animation:`float ${particle.duration}s ease-in-out infinite`,animationDelay:`${particle.delay}s`}}/>
+            ))}
+          </div>
+          
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'32px 16px',position:'relative',zIndex:10,display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'64px',alignItems:'center',width:'100%'}}>
+            <div>
+              <div style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'8px 16px',borderRadius:'9999px',background:'rgba(255,255,255,.05)',backdropFilter:'blur(20px)',border:'1px solid rgba(255,255,255,.1)',marginBottom:'32px'}}>
+                <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#4ade80',animation:'pulse 2s ease-in-out infinite'}}/>
+                <span style={{fontSize:'14px',color:'#d1d5db'}}>Accepting new projects for April 2026</span>
+              </div>
+
+              <h1 style={{fontFamily:'Poppins,sans-serif',fontSize:'clamp(2.5rem,5vw,4.5rem)',fontWeight:'800',lineHeight:1.1,marginBottom:'24px'}}>
+                We Build<br/>
+                <span className="gradient-text">Digital Products</span><br/>
+                That Actually Work
+              </h1>
+
+              <p style={{color:'#9ca3af',fontSize:'20px',marginBottom:'32px',maxWidth:'36rem',lineHeight:1.6}}>
+                From LiDAR scanning to web apps — we deliver projects that help businesses save time, reduce costs, and grow faster. No fluff, just results.
+              </p>
+
+              <div style={{display:'flex',flexWrap:'wrap',gap:'16px',marginBottom:'32px'}}>
+                <a href="#contact" className="btn-primary" style={{display:'inline-flex',alignItems:'center',gap:'8px',textDecoration:'none',boxShadow:'0 10px 30px rgba(14,165,233,.3)'}}>
+                  Book Free Consultation <Icons.ArrowRight/>
+                </a>
+                <a href="#portfolio" className="glass" style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'16px 32px',borderRadius:'9999px',color:'#fff',textDecoration:'none',fontWeight:'600',fontSize:'18px'}}>
+                  See Our Work <Icons.ExternalLink/>
+                </a>
+              </div>
+
+              <div style={{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'24px',marginBottom:'32px'}}>
+                {[
+                  { value: '8+', label: 'Years', Icon: Icons.Award },
+                  { value: '1500+', label: 'Projects', Icon: Icons.Briefcase },
+                  { value: '900+', label: 'Clients', Icon: Icons.Users },
+                  { value: '$30M+', label: 'Revenue', Icon: Icons.TrendingUp },
+                ].map((stat, i) => (
+                  <div key={i} style={{display:'flex',alignItems:'center',gap:'8px',padding:'12px 16px',borderRadius:'9999px',background:'rgba(255,255,255,.05)',backdropFilter:'blur(20px)',border:'1px solid rgba(255,255,255,.1)'}}>
+                    <stat.Icon/>
+                    <div>
+                      <div style={{fontSize:'20px',fontWeight:'700',background:'linear-gradient(135deg,#0ea5e9,#8b5cf6)','-webkit-background-clip':'text','-webkit-text-fill-color':'transparent'}}>{stat.value}</div>
+                      <div style={{fontSize:'12px',color:'#9ca3af'}}>{stat.label}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'24px',fontSize:'14px',color:'#9ca3af'}}>
+                <div style={{display:'flex',alignItems:'center',gap:'8px'}}><Icons.CheckCircle style={{color:'#4ade80'}}/> <span>Registered Company</span></div>
+                <div style={{display:'flex',alignItems:'center',gap:'8px'}}><Icons.CheckCircle style={{color:'#4ade80'}}/> <span>24/7 Support</span></div>
+                <div style={{display:'flex',alignItems:'center',gap:'8px'}}><Icons.CheckCircle style={{color:'#4ade80'}}/> <span>On-Time Delivery</span></div>
+              </div>
+            </div>
+
+            <div style={{display:'none'}} className="desktop-only">
+              <div style={{position:'relative',width:'100%',aspectRatio:'1'}}>
+                <div style={{position:'absolute',inset:0,background:'radial-gradient(circle, rgba(14,165,233,.3) 0%, rgba(139,92,246,.3) 100%)',borderRadius:'50%',filter:'blur(100px)'}}/>
+                
+                <div style={{position:'absolute',top:'25%',left:'25%',width:'75%',height:'75%',background:'rgba(255,255,255,.05)',backdropFilter:'blur(20px)',border:'1px solid rgba(255,255,255,.1)',borderRadius:'24px',padding:'32px',animation:'float 4s ease-in-out infinite'}}>
+                  <div style={{display:'flex',alignItems:'center',gap:'16px',marginBottom:'24px'}}>
+                    <div style={{width:'48px',height:'48px',borderRadius:'12px',background:'linear-gradient(135deg,#0ea5e9,#8b5cf6)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      <Icons.Code2/>
+                    </div>
+                    <div>
+                      <div style={{fontWeight:'600'}}>Recent Results</div>
+                      <div style={{fontSize:'14px',color:'#9ca3af'}}>Real projects, real impact</div>
+                    </div>
+                  </div>
+                  <div style={{display:'flex',flexDirection:'column',gap:'12px'}}>
+                    {[
+                      { Icon: Icons.Globe, text: 'E-commerce: 40% more sales', result: '+40%' },
+                      { Icon: Icons.MapPinned, text: 'BIM Project: Saved 200 hrs', result: '-200hrs' },
+                      { Icon: Icons.Smartphone, text: 'App: 10K+ downloads', result: '10K+' },
+                      { Icon: Icons.Cloud, text: 'Cloud: 99.9% uptime', result: '99.9%' },
+                    ].map((item, i) => (
+                      <div key={i} style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'12px',borderRadius:'8px',background:'rgba(255,255,255,.05)'}}>
+                        <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
+                          <item.Icon style={{color:'#38bdf8',width:'16px',height:'16px'}}/>
+                          <span style={{fontSize:'14px',color:'#d1d5db'}}>{item.text}</span>
+                        </div>
+                        <span style={{fontSize:'14px',fontWeight:'700',color:'#4ade80'}}>{item.result}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{position:'absolute',bottom:'25%',right:0,background:'rgba(255,255,255,.05)',backdropFilter:'blur(20px)',border:'1px solid rgba(255,255,255,.1)',borderRadius:'16px',padding:'16px',animation:'float 3s ease-in-out infinite',animationDelay:'1s'}}>
+                  <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
+                    <div style={{width:'40px',height:'40px',borderRadius:'50%',background:'linear-gradient(135deg,#4ade80,#10b981)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      <Icons.TrendingUp/>
+                    </div>
+                    <div>
+                      <div style={{fontSize:'14px',fontWeight:'600'}}>Client Success</div>
+                      <div style={{fontSize:'12px',color:'#4ade80'}}>+127% Growth</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="scroll-indicator">
+            <div style={{width:'24px',height:'40px',borderRadius:'12px',border:'2px solid rgba(255,255,255,.3)',display:'flex',alignItems:'start',justifyContent:'center',padding:'8px',animation:'float 1.5s ease-in-out infinite'}}>
+              <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'rgba(255,255,255,.5)',animation:'float 1.5s ease-in-out infinite'}}/>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const ServicesSection = () => {
+      const services = [
+        { Icon: Icons.Globe, title: 'Web Development', description: 'Build modern, responsive websites and web applications that drive engagement and conversions.', features: ['Custom Websites', 'E-commerce Solutions', 'Progressive Web Apps', 'WordPress & CMS'], color: 'from-blue-500 to-cyan-500' },
+        { Icon: Icons.Smartphone, title: 'Mobile App Development', description: 'Create powerful mobile applications for iOS and Android that users love.', features: ['iOS Development', 'Android Development', 'React Native', 'Flutter Apps'], color: 'from-purple-500 to-pink-500' },
+        { Icon: Icons.MapPinned, title: 'GIS & Mapping', description: 'Leverage geographic data with advanced mapping and spatial analysis solutions.', features: ['Interactive Maps', 'Spatial Analysis', 'GeoData Integration', 'Location Services'], color: 'from-emerald-500 to-teal-500' },
+        { Icon: Icons.Palette, title: 'Graphic Design', description: 'Stunning visual designs that capture your brand essence and captivate your audience.', features: ['Logo Design', 'Brand Identity', 'Social Media Graphics', 'Print Design'], color: 'from-orange-500 to-amber-500' },
+        { Icon: Icons.Database, title: 'Data Management', description: 'Organize, secure, and optimize your data for actionable insights and growth.', features: ['Database Design', 'Data Migration', 'Cloud Storage', 'Analytics & Reporting'], color: 'from-indigo-500 to-violet-500' },
+        { Icon: Icons.Cloud, title: 'Cloud Solutions', description: 'Scale your infrastructure with reliable and cost-effective cloud services.', features: ['AWS & Azure', 'Cloud Migration', 'DevOps & CI/CD', 'Server Management'], color: 'from-sky-500 to-blue-500' },
+        { Icon: Icons.Code2, title: 'Software Development', description: 'Custom software solutions built to solve your unique business challenges.', features: ['Custom Software', 'API Development', 'Third-party Integrations', 'Legacy Modernization'], color: 'from-rose-500 to-red-500' },
+        { Icon: Icons.Shield, title: 'Cybersecurity', description: 'Protect your digital assets with comprehensive security solutions.', features: ['Security Audits', 'Penetration Testing', 'Compliance', '24/7 Monitoring'], color: 'from-green-500 to-emerald-500' },
+      ];
+
+      return (
+        <section id="services" style={{padding:'96px 0',position:'relative'}}>
+          <div style={{position:'absolute',inset:0,background:'linear-gradient(to bottom, transparent, rgba(14,165,233,.05), transparent)'}}/>
+          
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px',position:'relative',zIndex:10}}>
+            <div style={{textAlign:'center',marginBottom:'64px'}}>
+              <span style={{color:'#38bdf8',fontWeight:'500',fontSize:'14px',textTransform:'uppercase',letterSpacing:'.1em'}}>What We Offer</span>
+              <h2 className="section-title" style={{marginTop:'16px',marginBottom:'24px'}}>Our <span className="gradient-text">Services</span></h2>
+              <p style={{color:'#9ca3af',maxWidth:'42rem',margin:'0 auto'}}>Comprehensive IT & Geo Infotech solutions - From web development to GIS mapping, we deliver excellence in every project.</p>
+            </div>
+
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(280px, 1fr))',gap:'24px'}}>
+              {services.map((service, i) => (
+                <div key={i} className="card" style={{cursor:'pointer'}}>
+                  <div style={{width:'56px',height:'56px',borderRadius:'16px',background:`linear-gradient(135deg,var(--tw-gradient-stops))`,backgroundImage:`linear-gradient(135deg, ${service.color.includes('blue')?'#3b82f6':'#a855f7'}, ${service.color.includes('cyan')?'#06b6d4':'#ec4899'})`,display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'24px'}}>
+                    <service.Icon style={{color:'#fff'}}/>
+                  </div>
+                  <h3 style={{fontSize:'20px',fontWeight:'600',marginBottom:'12px'}}>{service.title}</h3>
+                  <p style={{color:'#9ca3af',fontSize:'14px',marginBottom:'16px'}}>{service.description}</p>
+                  <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+                    {service.features.map((feature, j) => (
+                      <div key={j} style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'14px',color:'#d1d5db'}}>
+                        <Icons.CheckCircle style={{color:'#38bdf8',width:'14px',height:'14px'}}/> {feature}
+                      </div>
+                    ))}
+                  </div>
+                  <a href="#contact" style={{display:'block',marginTop:'16px',paddingTop:'16px',borderTop:'1px solid rgba(255,255,255,.1)',color:'#38bdf8',fontSize:'14px',fontWeight:'500',textDecoration:'none'}}>
+                    Learn More <Icons.ChevronRight/>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const AboutSection = () => {
+      const stats = [
+        { value: '8+', label: 'Years Experience', color: 'from-amber-400 to-orange-500', Icon: Icons.Award },
+        { value: '900+', label: 'Happy Clients', color: 'from-blue-400 to-cyan-500', Icon: Icons.Users },
+        { value: '1500+', label: 'Projects Done', color: 'from-emerald-400 to-teal-500', Icon: Icons.Briefcase },
+        { value: '$30M+', label: 'Client Revenue', color: 'from-purple-400 to-pink-500', Icon: Icons.BarChart3 },
+      ];
+
+      const whyChooseUs = [
+        { title: 'Fixed Price Projects', description: "No surprises. You know exactly what you'll pay before we start.", Icon: Icons.CheckCircle },
+        { title: 'On-Time Delivery', description: 'We respect deadlines. Your project ships when promised.', Icon: Icons.Clock },
+        { title: 'Dedicated Support', description: 'Direct access to our team. No ticket system runaround.', Icon: Icons.Headphones },
+        { title: 'Transparent Process', description: 'Regular updates and full visibility into your project progress.', Icon: Icons.Eye },
+      ];
+
+      return (
+        <section id="about" style={{padding:'96px 0'}}>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px',display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'64px',alignItems:'center'}}>
+            <div>
+              <span style={{color:'#38bdf8',fontWeight:'500',fontSize:'14px',textTransform:'uppercase',letterSpacing:'.1em'}}>About Us</span>
+              <h2 className="section-title" style={{marginTop:'16px',marginBottom:'24px'}}>We're the team that <span className="gradient-text">actually delivers</span></h2>
+              <p style={{color:'#d1d5db',fontSize:'18px',marginBottom:'24px',lineHeight:1.6}}>Based in Tamil Nadu, India, we're a team of developers, designers, and GIS specialists who got tired of watching businesses get burned by agencies that overpromise and underdeliver.</p>
+              <p style={{color:'#9ca3af',marginBottom:'24px',lineHeight:1.6}}>We started Elegance IT & Geo Infotech to offer something different: honest pricing, real communication, and projects that actually ship. Whether you need a website, a mobile app, or precision LiDAR scanning — we treat every project like it's our own.</p>
+              
+              <div style={{display:'flex',flexWrap:'wrap',gap:'16px',marginBottom:'32px'}}>
+                <div style={{display:'flex',alignItems:'center',gap:'8px',padding:'8px 16px',borderRadius:'9999px',background:'rgba(255,255,255,.05)'}}>
+                  <Icons.Building style={{color:'#38bdf8',width:'16px',height:'16px'}}/>
+                  <span style={{fontSize:'14px',color:'#d1d5db'}}>Registered Company</span>
+                </div>
+                <div style={{display:'flex',alignItems:'center',gap:'8px',padding:'8px 16px',borderRadius:'9999px',background:'rgba(255,255,255,.05)'}}>
+                  <Icons.MapPin style={{color:'#38bdf8',width:'16px',height:'16px'}}/>
+                  <span style={{fontSize:'14px',color:'#d1d5db'}}>Dharmapuri, Tamil Nadu</span>
+                </div>
+              </div>
+
+              <div style={{display:'grid',gridTemplateColumns:'repeat(2, 1fr)',gap:'16px'}}>
+                {whyChooseUs.map((item, i) => (
+                  <div key={i} style={{padding:'16px',borderRadius:'12px',background:'rgba(255,255,255,.05)',display:'flex',alignItems:'flex-start',gap:'12px'}}>
+                    <item.Icon style={{color:'#4ade80',width:'20px',height:'20px',flexShrink:0,marginTop:'2px'}}/>
+                    <div>
+                      <h4 style={{fontWeight:'600',fontSize:'14px',marginBottom:'4px'}}>{item.title}</h4>
+                      <p style={{fontSize:'12px',color:'#9ca3af'}}>{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{position:'relative'}}>
+              <div style={{position:'absolute',inset:'-16px',background:'linear-gradient(135deg, rgba(14,165,233,.2), rgba(139,92,246,.2))',borderRadius:'24px',filter:'blur(40px)'}}/>
+              
+              <div className="glass" style={{position:'relative',borderRadius:'24px',padding:'32px'}}>
+                <div style={{display:'grid',gridTemplateColumns:'repeat(2, 1fr)',gap:'24px'}}>
+                  {stats.map((stat, i) => (
+                    <div key={i} style={{textAlign:'center',padding:'24px',borderRadius:'16px',background:'rgba(255,255,255,.05)'}}>
+                      <div style={{width:'48px',height:'48px',borderRadius:'12px',margin:'0 auto 16px',backgroundImage:`linear-gradient(135deg, ${stat.color.split(' ')[0]}, ${stat.color.split(' ')[1]})`,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                        <stat.Icon style={{color:'#fff'}}/>
+                      </div>
+                      <div style={{fontSize:'30px',fontWeight:'700',background:'linear-gradient(135deg,#0ea5e9,#8b5cf6)','-webkit-background-clip':'text','-webkit-text-fill-color':'transparent',marginBottom:'4px'}}>{stat.value}</div>
+                      <div style={{fontSize:'14px',color:'#9ca3af'}}>{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{marginTop:'32px',padding:'24px',borderRadius:'16px',background:'linear-gradient(135deg, rgba(14,165,233,.1), rgba(139,92,246,.1))',border:'1px solid rgba(14,165,233,.2)'}}>
+                  <div style={{display:'flex',alignItems:'center',gap:'16px',marginBottom:'16px'}}>
+                    <div style={{display:'flex',marginLeft:'-8px'}}>
+                      {[1,2,3,4].map(i => (
+                        <div key={i} style={{width:'40px',height:'40px',borderRadius:'50%',background:'linear-gradient(135deg,#38bdf8,#8b5cf6)',border:'2px solid #0a0a0f',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'12px',fontWeight:'700',marginLeft:'-8px'}}>
+                          {String.fromCharCode(64+i)}
+                        </div>
+                      ))}
+                    </div>
+                    <div style={{display:'flex',gap:'2px'}}>
+                      {[1,2,3,4,5].map(i => <Icons.Star key={i} style={{color:'#facc15',fill:'#facc15',width:'14px',height:'14px'}}/>)}
+                    </div>
+                  </div>
+                  <p style={{fontSize:'14px',color:'#d1d5db'}}>"Elegance IT transformed our business with their exceptional web development services. Highly recommended!"</p>
+                  <p style={{fontSize:'12px',color:'#6b7280',marginTop:'8px'}}>- CEO, Tech Startup</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const AnimatedStatsSection = () => {
+      const stats = [
+        { value: 8, suffix: '+', label: 'Years Experience', Icon: Icons.Award },
+        { value: 1500, suffix: '+', label: 'Projects Completed', Icon: Icons.Briefcase },
+        { value: 900, suffix: '+', label: 'Happy Clients', Icon: Icons.Users },
+        { value: 30, prefix: '$', suffix: 'M+', label: 'Revenue Generated', Icon: Icons.TrendingUp },
+      ];
+
+      return (
+        <section style={{padding:'80px 0',position:'relative',overflow:'hidden'}}>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px'}}>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))',gap:'24px'}}>
+              {stats.map((stat, i) => (
+                <div key={i} className="glass" style={{borderRadius:'16px',padding:'24px',textAlign:'center'}}>
+                  <div style={{width:'56px',height:'56px',margin:'0 auto 16px',borderRadius:'16px',background:'rgba(14,165,233,.2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    <stat.Icon style={{color:'#38bdf8',width:'28px',height:'28px'}}/>
+                  </div>
+                  <CountUp value={stat.value} prefix={stat.prefix} suffix={stat.suffix}/>
+                  <p style={{color:'#9ca3af',fontSize:'14px',marginTop:'8px'}}>{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const ClientLogosSection = () => {
+      const clients = [
+        { name: 'TechCorp', logo: 'TC' },
+        { name: 'GeoSystems', logo: 'GS' },
+        { name: 'BuildRight', logo: 'BR' },
+        { name: 'DataPro', logo: 'DP' },
+        { name: 'CloudBase', logo: 'CB' },
+        { name: 'MapMaster', logo: 'MM' },
+      ];
+
+      return (
+        <section style={{padding:'64px 0'}}>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px'}}>
+            <div style={{textAlign:'center',marginBottom:'48px'}}>
+              <span style={{color:'#38bdf8',fontWeight:'500',fontSize:'14px',textTransform:'uppercase',letterSpacing:'.1em'}}>Trusted By</span>
+              <h3 style={{fontSize:'20px',fontWeight:'600',marginTop:'8px',color:'#9ca3af'}}>Our Trusted Partners & Clients</h3>
+            </div>
+
+            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',alignItems:'center',gap:'32px'}}>
+              {clients.map((client, i) => (
+                <div key={i} className="glass" style={{borderRadius:'12px',padding:'16px 32px',display:'flex',alignItems:'center',gap:'12px',cursor:'pointer'}}>
+                  <div style={{width:'40px',height:'40px',borderRadius:'8px',background:'linear-gradient(135deg,#0ea5e9,#8b5cf6)',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:'700',fontSize:'14px'}}>
+                    {client.logo}
+                  </div>
+                  <span style={{fontWeight:'500',color:'#d1d5db'}}>{client.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const TeamSection = () => {
+      const team = [
+        { name: 'Arun Kumar', role: 'Founder & CEO', expertise: 'GIS & LiDAR Engineering', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face' },
+        { name: 'Priya Sharma', role: 'Technical Lead', expertise: 'Web & Mobile Development', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face' },
+        { name: 'Rahul Verma', role: 'BIM Specialist', expertise: 'Scan-to-BIM & CAD', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face' },
+        { name: 'Sneha Reddy', role: 'Design Head', expertise: 'UI/UX & Digital Marketing', image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&crop=face' },
+      ];
+
+      return (
+        <section id="team" style={{padding:'96px 0',position:'relative'}}>
+          <div style={{position:'absolute',inset:0,background:'linear-gradient(to bottom, transparent, rgba(14,165,233,.05), transparent)'}}/>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px',position:'relative',zIndex:10}}>
+            <div style={{textAlign:'center',marginBottom:'64px'}}>
+              <span style={{color:'#38bdf8',fontWeight:'500',fontSize:'14px',textTransform:'uppercase',letterSpacing:'.1em',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px'}}><Icons.Users/> Our Team</span>
+              <h2 className="section-title" style={{marginTop:'16px',marginBottom:'24px'}}>Meet the <span className="gradient-text">Experts</span></h2>
+              <p style={{color:'#9ca3af',maxWidth:'42rem',margin:'0 auto'}}>Our talented team of professionals brings together expertise in GIS, LiDAR, BIM, and modern web technologies.</p>
+            </div>
+
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(250px, 1fr))',gap:'24px'}}>
+              {team.map((member, i) => (
+                <div key={i} className="glass" style={{borderRadius:'16px',overflow:'hidden',cursor:'pointer'}}>
+                  <div style={{position:'relative',height:'256px',overflow:'hidden'}}>
+                    <img src={member.image} alt={member.name} style={{width:'100%',height:'100%',objectFit:'cover',transition:'transform .5s'}}/>
+                    <div style={{position:'absolute',inset:0,background:'linear-gradient(to top, rgba(0,0,0,.8), transparent)'}}/>
+                    <div style={{position:'absolute',bottom:'16px',left:'16px',right:'16px'}}>
+                      <div style={{display:'flex',gap:'8px',opacity:0,transition:'opacity .3s'}}>
+                        <a href="#" style={{width:'32px',height:'32px',borderRadius:'50%',background:'rgba(255,255,255,.2)',display:'flex',alignItems:'center',justifyContent:'center'}}><Icons.Linkedin style={{width:'14px',height:'14px'}}/></a>
+                        <a href="#" style={{width:'32px',height:'32px',borderRadius:'50%',background:'rgba(255,255,255,.2)',display:'flex',alignItems:'center',justifyContent:'center'}}><Icons.Twitter style={{width:'14px',height:'14px'}}/></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{padding:'24px'}}>
+                    <h3 style={{fontSize:'18px',fontWeight:'600'}}>{member.name}</h3>
+                    <p style={{color:'#38bdf8',fontSize:'14px'}}>{member.role}</p>
+                    <p style={{color:'#9ca3af',fontSize:'12px',marginTop:'8px',display:'flex',alignItems:'center',gap:'4px'}}><Icons.Droplet style={{width:'12px',height:'12px'}}/> {member.expertise}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const TestimonialsSection = () => {
+      const testimonials = [
+        { name: 'Vikram Singh', role: 'Project Manager', company: 'BuildCorp India', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face', text: 'Their BIM models helped us win a government contract. Delivered 3 weeks early and saved us ₹4 lakhs in rework costs.', result: '₹4L saved', rating: 5 },
+        { name: 'Meera Krishnan', role: 'Director', company: 'GeoVision Labs', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face', text: 'The LiDAR survey they did for our highway project was incredibly accurate. 15,000 data points processed in just 5 days.', result: '5 days delivery', rating: 5 },
+        { name: 'Anand Patel', role: 'CEO', company: 'RetailMart', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face', text: 'Our e-commerce website went from 0 to 500 orders/day in 3 months. The SEO work alone brought us 300% more traffic.', result: '300% more traffic', rating: 5 },
+      ];
+
+      return (
+        <section style={{padding:'96px 0',position:'relative'}}>
+          <div style={{position:'absolute',inset:0,background:'linear-gradient(to bottom, transparent, rgba(139,92,246,.05), transparent)'}}/>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px',position:'relative',zIndex:10}}>
+            <div style={{textAlign:'center',marginBottom:'64px'}}>
+              <span style={{color:'#38bdf8',fontWeight:'500',fontSize:'14px',textTransform:'uppercase',letterSpacing:'.1em',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px'}}><Icons.Quote/> Client Results</span>
+              <h2 className="section-title" style={{marginTop:'16px',marginBottom:'24px'}}>Real Results, <span className="gradient-text">Real Clients</span></h2>
+              <p style={{color:'#9ca3af',maxWidth:'42rem',margin:'0 auto'}}>Don't just take our word for it. Here's what our clients achieved with our solutions.</p>
+            </div>
+
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'24px'}}>
+              {testimonials.map((testimonial, i) => (
+                <div key={i} className="glass" style={{borderRadius:'16px',padding:'24px',position:'relative'}}>
+                  <div style={{position:'absolute',top:'16px',right:'16px',padding:'4px 12px',borderRadius:'9999px',background:'rgba(34,197,94,.2)'}}>
+                    <span style={{color:'#4ade80',fontSize:'12px',fontWeight:'700'}}>{testimonial.result}</span>
+                  </div>
+                  <Icons.Quote style={{color:'rgba(14,165,233,.3)',width:'32px',height:'32px'}}/>
+                  <div style={{display:'flex',alignItems:'center',gap:'16px',marginTop:'8px',marginBottom:'16px'}}>
+                    <img src={testimonial.image} alt={testimonial.name} style={{width:'56px',height:'56px',borderRadius:'50%',objectFit:'cover',border:'2px solid #0ea5e9'}}/>
+                    <div>
+                      <h4 style={{fontWeight:'600'}}>{testimonial.name}</h4>
+                      <p style={{fontSize:'14px',color:'#9ca3af'}}>{testimonial.role}, {testimonial.company}</p>
+                    </div>
+                  </div>
+                  <div style={{display:'flex',gap:'4px',marginBottom:'16px'}}>
+                    {[...Array(testimonial.rating)].map((_, j) => <Icons.Star key={j} style={{color:'#facc15',fill:'#facc15',width:'14px',height:'14px'}}/>)}
+                  </div>
+                  <p style={{color:'#d1d5db',fontSize:'14px',lineHeight:1.6}}>"{testimonial.text}"</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const CertificationsSection = () => {
+      const certs = [
+        { name: 'ISO 9001:2015', Icon: Icons.BadgeCheck, desc: 'Quality Management' },
+        { name: 'Google Partner', Icon: Icons.Hexagon, desc: 'Digital Marketing' },
+        { name: 'AWS Certified', Icon: Icons.Cloud, desc: 'Cloud Services' },
+        { name: 'GIS Professional', Icon: Icons.MapPinned, desc: 'GIS Solutions' },
+      ];
+
+      return (
+        <section style={{padding:'48px 0'}}>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px'}}>
+            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',alignItems:'center',gap:'24px'}}>
+              {certs.map((cert, i) => (
+                <div key={i} className="glass" style={{display:'flex',alignItems:'center',gap:'12px',borderRadius:'9999px',padding:'12px 24px'}}>
+                  <cert.Icon style={{color:'#38bdf8',width:'20px',height:'20px'}}/>
+                  <div>
+                    <span style={{fontWeight:'500',fontSize:'14px'}}>{cert.name}</span>
+                    <span style={{color:'#9ca3af',fontSize:'12px',display:'block'}}>{cert.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const FAQSection = () => {
+      const [openIndex, setOpenIndex] = useState(null);
+      
+      const faqs = [
+        { question: 'What services does Elegance IT & Geo Infotech offer?', answer: 'We offer a comprehensive range of IT services including Web Development, Mobile App Development, GIS & Mapping Solutions, Graphic Design, Data Management, Cloud Solutions, Software Development, and Cybersecurity services.' },
+        { question: 'How long does it take to complete a project?', answer: 'Project timelines vary based on complexity. A simple website can take 2-4 weeks, while complex applications may take 2-6 months. We provide detailed timelines during our initial consultation.' },
+        { question: 'Do you provide post-launch support?', answer: 'Yes! We offer comprehensive post-launch support including bug fixes, updates, security patches, and optional maintenance packages to keep your project running smoothly.' },
+        { question: 'What technologies do you work with?', answer: 'We work with modern technologies including React, Next.js, React Native, Flutter, Python, Node.js, AWS, Azure, and various GIS platforms like QGIS and ArcGIS.' },
+        { question: 'Can you help with existing projects?', answer: 'Absolutely! We can take over existing projects, perform code audits, optimize performance, add new features, or help with migration to modern technologies.' },
+        { question: 'How much does a typical project cost?', answer: 'Project costs depend on scope, complexity, and requirements. We provide detailed quotes after understanding your needs. Contact us for a free consultation and estimate.' },
+      ];
+
+      return (
+        <section id="faq" style={{padding:'96px 0',position:'relative'}}>
+          <div style={{position:'absolute',inset:0,background:'linear-gradient(to bottom, transparent, rgba(139,92,246,.05), transparent)'}}/>
+          <div style={{maxWidth:'48rem',margin:'0 auto',padding:'0 16px',position:'relative',zIndex:10}}>
+            <div style={{textAlign:'center',marginBottom:'64px'}}>
+              <span style={{color:'#38bdf8',fontWeight:'500',fontSize:'14px',textTransform:'uppercase',letterSpacing:'.1em',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px'}}><Icons.HelpCircle/> FAQ</span>
+              <h2 className="section-title" style={{fontSize:'2.5rem',marginTop:'16px',marginBottom:'24px'}}>Frequently Asked <span className="gradient-text">Questions</span></h2>
+            </div>
+
+            <div style={{display:'flex',flexDirection:'column',gap:'16px'}}>
+              {faqs.map((faq, i) => (
+                <div key={i} className="faq-item glass">
+                  <button onClick={() => setOpenIndex(openIndex === i ? null : i)} style={{width:'100%',padding:'16px 24px',display:'flex',alignItems:'center',justifyContent:'space-between',textAlign:'left',background:'none',border:'none',color:'#fff',cursor:'pointer'}}>
+                    <span style={{fontWeight:'500',paddingRight:'16px'}}>{faq.question}</span>
+                    <Icons.Plus style={{color:'#38bdf8',width:'20px',height:'20px',flexShrink:0,transform: openIndex === i ? 'rotate(45deg)' : 'none',transition:'transform .2s'}}/>
+                  </button>
+                  <div className={`faq-answer ${openIndex === i ? 'open' : ''}`}>
+                    <p style={{padding:'0 24px 16px',color:'#9ca3af',fontSize:'14px'}}>{faq.answer}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const PortfolioSection = () => {
+      const [selectedProject, setSelectedProject] = useState(null);
+
+      const projects = [
+        { title: 'LiDAR Scanning & Processing', category: 'LiDAR Engineering', description: 'High-precision 3D point cloud acquisition and processing for terrain modeling', color: 'from-green-500 to-emerald-600', image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop', features: ['Terrestrial LiDAR', 'Airborne LiDAR', 'Mobile Mapping', 'Point Cloud Processing'], details: 'Our LiDAR engineering services deliver centimeter-level accuracy for infrastructure planning, topographic mapping, and asset management.' },
+        { title: 'BIM Modeling Services', category: 'BIM & Scan-to-BIM', description: 'As-built BIM models from laser scans for construction and renovation projects', color: 'from-blue-500 to-indigo-600', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop', features: ['Architectural BIM', 'Structural BIM', 'MEP Modeling', 'Scan-to-BIM Conversion'], details: 'Transform reality into digital information with our BIM services.' },
+        { title: 'SEO & Digital Marketing', category: 'Digital Marketing', description: 'Data-driven digital marketing strategies to boost your online presence and conversions', color: 'from-orange-500 to-red-500', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop', features: ['Search Engine Optimization', 'Social Media Marketing', 'Content Strategy', 'PPC Campaigns'], details: 'Grow your business with our comprehensive digital marketing services.' },
+        { title: 'UI/UX Design', category: 'UI & UX Services', description: 'User-centered design that creates intuitive and engaging digital experiences', color: 'from-purple-500 to-pink-600', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop', features: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems'], details: 'Create digital products users love with our UI/UX design services.' },
+        { title: 'Web Development', category: 'Web Development', description: 'Modern, responsive websites built with cutting-edge technologies', color: 'from-cyan-500 to-blue-600', image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=600&fit=crop', features: ['React & Next.js', 'E-commerce', 'Progressive Web Apps', 'CMS Integration'], details: 'Build powerful web applications that scale with your business.' },
+        { title: 'Mobile App Development', category: 'Mobile Development', description: 'Native and cross-platform mobile applications for iOS and Android', color: 'from-violet-500 to-purple-600', image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop', features: ['iOS Development', 'Android Development', 'React Native', 'Flutter Apps'], details: 'Bring your ideas to mobile with our app development services.' },
+      ];
+
+      return (
+        <>
+          <section id="portfolio" style={{padding:'96px 0',position:'relative'}}>
+            <div style={{position:'absolute',inset:0,background:'linear-gradient(to bottom, transparent, rgba(139,92,246,.05), transparent)'}}/>
+            
+            <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px',position:'relative',zIndex:10}}>
+              <div style={{textAlign:'center',marginBottom:'64px'}}>
+                <span style={{color:'#38bdf8',fontWeight:'500',fontSize:'14px',textTransform:'uppercase',letterSpacing:'.1em',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px'}}><Icons.Briefcase/> Our Work</span>
+                <h2 className="section-title" style={{marginTop:'16px',marginBottom:'24px'}}>Featured <span className="gradient-text">Projects</span></h2>
+                <p style={{color:'#9ca3af',maxWidth:'42rem',margin:'0 auto'}}>Explore our portfolio of successful projects across LiDAR, BIM, Digital Marketing, UI/UX, and more.</p>
+              </div>
+
+              <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'24px'}}>
+                {projects.map((project, i) => (
+                  <div key={i} className="glass" style={{borderRadius:'16px',overflow:'hidden',cursor:'pointer'}} onClick={() => setSelectedProject(project)}>
+                    <div style={{position:'relative',height:'192px',overflow:'hidden'}}>
+                      <img src={project.image} alt={project.title} style={{width:'100%',height:'100%',objectFit:'cover',transition:'transform .5s'}}/>
+                      <div style={{position:'absolute',inset:0,background:`linear-gradient(135deg, ${project.color.split(' ')[0]}, ${project.color.split(' ')[1]})`,opacity:.6}}/>
+                      <div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                        <Icons.Layers style={{color:'rgba(255,255,255,.8)',width:'40px',height:'40px'}}/>
+                      </div>
+                    </div>
+                    <div style={{padding:'24px'}}>
+                      <span style={{fontSize:'12px',color:'#38bdf8',fontWeight:'500',textTransform:'uppercase',letterSpacing:'.05em'}}>{project.category}</span>
+                      <h3 style={{fontSize:'20px',fontWeight:'600',marginTop:'8px',marginBottom:'8px'}}>{project.title}</h3>
+                      <p style={{color:'#9ca3af',fontSize:'14px',marginBottom:'16px'}}>{project.description}</p>
+                      <span style={{fontSize:'14px',color:'#d1d5db',display:'flex',alignItems:'center',gap:'8px'}}>View Details <Icons.ExternalLink style={{width:'14px',height:'14px'}}/></span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {selectedProject && (
+            <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+              <div className="modal-content glass" onClick={e => e.stopPropagation()}>
+                <div style={{position:'relative',height:'256px'}}>
+                  <img src={selectedProject.image} alt={selectedProject.title} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+                  <div style={{position:'absolute',inset:0,background:`linear-gradient(135deg, ${selectedProject.color.split(' ')[0]}, ${selectedProject.color.split(' ')[1]})`,opacity:.7}}/>
+                  <button onClick={() => setSelectedProject(null)} style={{position:'absolute',top:'16px',right:'16px',width:'40px',height:'40px',borderRadius:'50%',background:'rgba(0,0,0,.5)',border:'none',color:'#fff',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}><Icons.X/></button>
+                  <div style={{position:'absolute',bottom:'24px',left:'24px'}}>
+                    <span style={{padding:'4px 12px',borderRadius:'9999px',background:'rgba(255,255,255,.2)',fontSize:'14px',color:'#fff'}}>{selectedProject.category}</span>
+                  </div>
+                </div>
+                
+                <div style={{padding:'32px'}}>
+                  <h2 style={{fontSize:'30px',fontWeight:'700',marginBottom:'16px'}}>{selectedProject.title}</h2>
+                  <p style={{color:'#d1d5db',marginBottom:'24px'}}>{selectedProject.details}</p>
+                  
+                  <h3 style={{fontSize:'18px',fontWeight:'600',marginBottom:'16px',display:'flex',alignItems:'center',gap:'8px'}}><Icons.CheckCircle style={{color:'#38bdf8',width:'20px',height:'20px'}}/> Key Features</h3>
+                  <div style={{display:'grid',gridTemplateColumns:'repeat(2, 1fr)',gap:'12px',marginBottom:'32px'}}>
+                    {selectedProject.features.map((feature, i) => (
+                      <div key={i} style={{display:'flex',alignItems:'center',gap:'8px',color:'#d1d5db'}}>
+                        <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#38bdf8'}}/> {feature}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <a href="#contact" onClick={() => setSelectedProject(null)} className="btn-primary" style={{display:'inline-flex',alignItems:'center',gap:'8px',textDecoration:'none'}}>
+                    Start Your Project <Icons.ArrowRight/>
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      );
+    };
+
+    const ContactSection = () => {
+      const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        setFormState({ name: '', email: '', message: '' });
+      };
+
+      const contactInfo = [
+        { Icon: Icons.Mail, title: 'Email Us', value: 'elegancegeoinfotech06@gmail.com', link: 'mailto:elegancegeoinfotech06@gmail.com' },
+        { Icon: Icons.Phone, title: 'Call Us', value: '+91 63691 26125', link: 'tel:+916369126125' },
+        { Icon: Icons.MapPin, title: 'Visit Us', value: 'Thippampatti, Dharmapuri, Tamilnadu, India', link: '#' },
+      ];
+
+      return (
+        <section id="contact" style={{padding:'96px 0'}}>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px',display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'64px'}}>
+            <div>
+              <span style={{color:'#38bdf8',fontWeight:'500',fontSize:'14px',textTransform:'uppercase',letterSpacing:'.1em'}}>Get In Touch</span>
+              <h2 className="section-title" style={{marginTop:'16px',marginBottom:'24px'}}>Let's Build <span className="gradient-text">Something Great</span></h2>
+              <p style={{color:'#9ca3af',marginBottom:'32px'}}>Ready to transform your business with cutting-edge technology? Contact us today and let's discuss your project.</p>
+
+              <div style={{display:'flex',flexDirection:'column',gap:'24px'}}>
+                {contactInfo.map((info, i) => (
+                  <a key={i} href={info.link} className="glass" style={{display:'flex',alignItems:'center',gap:'16px',padding:'16px',borderRadius:'12px',textDecoration:'none',transition:'border-color .3s'}}>
+                    <div style={{width:'48px',height:'48px',borderRadius:'12px',background:'rgba(14,165,233,.2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      <info.Icon style={{color:'#38bdf8',width:'24px',height:'24px'}}/>
+                    </div>
+                    <div>
+                      <div style={{fontSize:'14px',color:'#9ca3af'}}>{info.title}</div>
+                      <div style={{fontWeight:'500'}}>{info.value}</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="glass" style={{borderRadius:'16px',padding:'32px'}}>
+              <div style={{display:'flex',flexDirection:'column',gap:'24px'}}>
+                <div>
+                  <label style={{display:'block',fontSize:'14px',fontWeight:'500',marginBottom:'8px'}}>Your Name</label>
+                  <input type="text" value={formState.name} onChange={e => setFormState({...formState, name: e.target.value})} style={{width:'100%',padding:'12px 16px',borderRadius:'12px',background:'rgba(255,255,255,.05)',border:'1px solid rgba(255,255,255,.1)',color:'#fff',outline:'none',transition:'border-color .3s',fontSize:'16px'}} placeholder="John Doe" required/>
+                </div>
+                <div>
+                  <label style={{display:'block',fontSize:'14px',fontWeight:'500',marginBottom:'8px'}}>Email Address</label>
+                  <input type="email" value={formState.email} onChange={e => setFormState({...formState, email: e.target.value})} style={{width:'100%',padding:'12px 16px',borderRadius:'12px',background:'rgba(255,255,255,.05)',border:'1px solid rgba(255,255,255,.1)',color:'#fff',outline:'none',transition:'border-color .3s',fontSize:'16px'}} placeholder="john@example.com" required/>
+                </div>
+                <div>
+                  <label style={{display:'block',fontSize:'14px',fontWeight:'500',marginBottom:'8px'}}>Your Message</label>
+                  <textarea value={formState.message} onChange={e => setFormState({...formState, message: e.target.value})} rows={5} style={{width:'100%',padding:'12px 16px',borderRadius:'12px',background:'rgba(255,255,255,.05)',border:'1px solid rgba(255,255,255,.1)',color:'#fff',outline:'none',transition:'border-color .3s',fontSize:'16px',resize:'none'}} placeholder="Tell us about your project..." required/>
+                </div>
+                <button type="submit" className="btn-primary" style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'8px',width:'100%',padding:'16px',fontSize:'16px',border:'none',cursor:'pointer'}}>
+                  <Icons.Send style={{width:'18px',height:'18px'}}/> Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      );
+    };
+
+    const Footer = () => {
+      const footerLinks = {
+        Services: ['Web Development', 'Mobile Apps', 'LiDAR Scanning', 'BIM Modeling', 'SEO & Marketing'],
+        Company: ['About Us', 'Our Team', 'Contact', 'Careers'],
+        Legal: ['Privacy Policy', 'Terms of Service', 'Refund Policy'],
+      };
+
+      return (
+        <footer style={{padding:'64px 0',borderTop:'1px solid rgba(255,255,255,.1)'}}>
+          <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 16px'}}>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))',gap:'48px',marginBottom:'48px'}}>
+              <div>
+                <Logo/>
+                <p style={{color:'#9ca3af',fontSize:'14px',marginTop:'16px',marginBottom:'16px'}}>Building digital products that help businesses grow. Based in Tamil Nadu, serving clients worldwide.</p>
+                <div style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'12px',color:'#6b7280',marginBottom:'16px'}}>
+                  <Icons.Building style={{width:'14px',height:'14px'}}/>
+                  <span>EleganceGeoInfoTech</span>
+                </div>
+                <a href="https://www.instagram.com/elegancegeoinfotech/" target="_blank" rel="noopener noreferrer" className="glass" style={{width:'40px',height:'40px',borderRadius:'50%',display:'inline-flex',alignItems:'center',justifyContent:'center',transition:'background .3s'}}>
+                  <Icons.Instagram style={{width:'20px',height:'20px'}}/>
+                </a>
+              </div>
+
+              {Object.entries(footerLinks).map(([title, links]) => (
+                <div key={title}>
+                  <h4 style={{fontWeight:'600',marginBottom:'16px',display:'flex',alignItems:'center',gap:'8px'}}>
+                    {title === 'Services' && <Icons.Layers style={{color:'#38bdf8',width:'18px',height:'18px'}}/>}
+                    {title === 'Company' && <Icons.Building style={{color:'#38bdf8',width:'18px',height:'18px'}}/>}
+                    {title === 'Legal' && <Icons.Lock style={{color:'#38bdf8',width:'18px',height:'18px'}}/>}
+                    {title}
+                  </h4>
+                  <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
+                    {links.map((link, i) => (
+                      <li key={i}>
+                        <a href="#" style={{color:'#9ca3af',fontSize:'14px',textDecoration:'none',display:'flex',alignItems:'center',gap:'8px',transition:'color .3s'}}>
+                          <Icons.ChevronRight style={{width:'14px',height:'14px'}}/> {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <div style={{paddingTop:'32px',borderTop:'1px solid rgba(255,255,255,.1)'}}>
+              <div style={{display:'flex',flexWrap:'wrap',alignItems:'center',justifyContent:'space-between',gap:'16px',marginBottom:'16px'}}>
+                <div style={{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'16px',fontSize:'12px',color:'#6b7280'}}>
+                  <div style={{display:'flex',alignItems:'center',gap:'4px'}}><Icons.Mail style={{width:'12px',height:'12px'}}/> <span>elegancegeoinfotech06@gmail.com</span></div>
+                  <div style={{display:'flex',alignItems:'center',gap:'4px'}}><Icons.Phone style={{width:'12px',height:'12px'}}/> <span>+91 63691 26125</span></div>
+                  <div style={{display:'flex',alignItems:'center',gap:'4px'}}><Icons.MapPin style={{width:'12px',height:'12px'}}/> <span>Thippampatti, Dharmapuri, Tamil Nadu</span></div>
+                </div>
+              </div>
+              <div style={{display:'flex',flexWrap:'wrap',alignItems:'center',justifyContent:'space-between',gap:'16px'}}>
+                <p style={{color:'#9ca3af',fontSize:'14px'}}>© 2026 Elegance IT & Geo Infotech. All rights reserved.</p>
+                <p style={{color:'#6b7280',fontSize:'12px'}}>Crafted with care in India</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    };
+
+    const WhatsAppButton = () => (
+      <a href="https://wa.me/916369126125" target="_blank" rel="noopener noreferrer" className="whatsapp-btn">
+        <Icons.MessageCircle style={{color:'#fff',width:'28px',height:'28px'}}/>
+        <span style={{position:'absolute',top:'-4px',right:'-4px',width:'16px',height:'16px',background:'#ef4444',borderRadius:'50%',animation:'pulse 2s ease-in-out infinite'}}/>
+      </a>
+    );
+
+    function App() {
+      return (
+        <div style={{minHeight:'100vh',background:'#0a0a0f'}}>
+          <Navbar/>
+          <HeroSection/>
+          <AnimatedStatsSection/>
+          <ServicesSection/>
+          <FAQSection/>
+          <ClientLogosSection/>
+          <AboutSection/>
+          <TeamSection/>
+          <TestimonialsSection/>
+          <CertificationsSection/>
+          <PortfolioSection/>
+          <ContactSection/>
+          <Footer/>
+          <WhatsAppButton/>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App/>);
+  </script>
+</body>
+</html>
