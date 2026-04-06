@@ -804,8 +804,8 @@
       );
     };
 
-    // ==========================================================================
-    // TEAM SECTION - Team member profiles
+    /* ==========================================================================
+    // TEAM SECTION - Team member profiles (HIDDEN - Add images when ready)
     // ==========================================================================
     const TeamSection = () => {
       const team = [
@@ -831,7 +831,7 @@
                   <div style={{position:'relative',height:'256px',overflow:'hidden'}}>
                     <img src={member.image} alt={member.name} style={{width:'100%',height:'100%',objectFit:'cover',transition:'transform .5s'}}/>
                     <div style={{position:'absolute',inset:0,background:'linear-gradient(to top, rgba(0,0,0,.8), transparent)'}}/>
-                    {/* Social Links - Show on hover */}
+                    {/* Social Links - Show on hover }
                     <div style={{position:'absolute',bottom:'16px',left:'16px',right:'16px'}}>
                       <div style={{display:'flex',gap:'8px',opacity:0,transition:'opacity .3s'}}>
                         <a href="#" style={{width:'32px',height:'32px',borderRadius:'50%',background:'rgba(255,255,255,.2)',display:'flex',alignItems:'center',justifyContent:'center'}}><Icons.Linkedin style={{width:'14px',height:'14px'}}/></a>
@@ -851,6 +851,7 @@
         </section>
       );
     };
+    */
 
     // ==========================================================================
     // TESTIMONIALS SECTION - Client success stories
@@ -1231,7 +1232,7 @@
           <FAQSection/>
           <ClientLogosSection/>
           <AboutSection/>
-          <TeamSection/>
+          {/* <TeamSection/> - Hidden - Add team images when ready */}
           <TestimonialsSection/>
           <CertificationsSection/>
           <PortfolioSection/>
